@@ -5,6 +5,7 @@
 //  Created by JACK on 2017/10/29.
 //  Copyright © 2017年 JACK. All rights reserved.
 //
+#define URL @"http://route.showapi.com/109-35"
 #define width self.view.frame.size.width
 #define height self.view.frame.size.height
 #define Touch UIControlEventTouchUpInside
@@ -50,6 +51,7 @@
     hud.mode = MBProgressHUDModeAnnularDeterminate;
     hud.label.text = @"Loading";
 }
+
 - (void)addRefreshGif{
     MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     NSMutableArray *array = [[NSMutableArray alloc]init];
@@ -87,7 +89,7 @@
 - (void)addScrollView{
     _listSV = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, width, 30)];
     //    _listSV.backgroundColor = [UIColor blackColor];
-//    _listSV.pagingEnabled = YES;
+    _listSV.pagingEnabled = YES;
     _listSV.showsHorizontalScrollIndicator=NO;
     _listSV.delegate =self;
     _listSV.backgroundColor = [UIColor whiteColor];
@@ -114,14 +116,19 @@
     [self.view addSubview:_listSV];
 }
 - (void)touTiaoOfListTask{
-    NSLog(@"ff");
 }
 - (void)getData{
+    NSDictionary *para = @{
+                          @"showapi_appid":@"49852",
+                          @"showapi_sign":@"81497a5a58de4543afdbb9aa42d32f2c",
+                          @"page":@"1",
+                          @"title":@"娱乐"
+                          };
     AFHTTPSessionManager *manger = [AFHTTPSessionManager manager];
     manger.requestSerializer= [AFHTTPRequestSerializer serializer];
-    [manger GET:@"http://interface.sina.cn/wap_api/layout_col.d.json?&showcid=56261" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manger GET:URL parameters:para progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"请求成功");
-        //        NSLog(@"%@",responseObject);
+//                NSLog(@"%@",responseObject);
         _orderModel = [[TVOrderModel alloc] initWithDictionary:responseObject error:nil];
         [self.tableView reloadData];
         [hud hideAnimated:YES];
@@ -140,14 +147,14 @@
     NSLog(@"");
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [_orderModel.result.data.count intValue];
+    return [_orderModel.showapi_res_body.pagebean.allNum intValue] - 1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 120;
+    return 150;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ShouYeTVCell* cell = [tableView dequeueReusableCellWithIdentifier:@"cellId1" forIndexPath:indexPath];
-    [cell updateData:_orderModel.result.data.list[indexPath.row]];
+    [cell updateData:_orderModel.showapi_res_body.pagebean.contentlist[indexPath.row]];
     return cell;
 }
 - (void)didReceiveMemoryWarning {

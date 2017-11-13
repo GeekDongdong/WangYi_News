@@ -40,7 +40,7 @@
 		041CF9E01FB702FB002DAC79 /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 041CF9CA1FB702FB002DAC79 /* UIScrollView+MJExtension.m */; };
 		041CF9E11FB702FB002DAC79 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 041CF9CC1FB702FB002DAC79 /* UIScrollView+MJRefresh.m */; };
 		041CF9E21FB702FB002DAC79 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 041CF9CE1FB702FB002DAC79 /* UIView+MJExtension.m */; };
-		044D3D251FB81C0700292118 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 044D3D241FB81C0700292118 /* MBProgressHUD.m */; };
+		044D3D291FB8421600292118 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 044D3D281FB8421600292118 /* MBProgressHUD.m */; };
 		046A47CF1FAB427B007EE10F /* WeiZiXunView.m in Sources */ = {isa = PBXBuildFile; fileRef = 046A47CE1FAB427B007EE10F /* WeiZiXunView.m */; };
 		046C92521FA5B81600F61C73 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 046C92511FA5B81600F61C73 /* main.m */; };
 		046C92551FA5B81600F61C73 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 046C92541FA5B81600F61C73 /* AppDelegate.m */; };
@@ -155,8 +155,8 @@
 		041CF9CC1FB702FB002DAC79 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		041CF9CD1FB702FB002DAC79 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		041CF9CE1FB702FB002DAC79 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
-		044D3D231FB81C0700292118 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		044D3D241FB81C0700292118 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		044D3D271FB8421600292118 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		044D3D281FB8421600292118 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		046A47CD1FAB427B007EE10F /* WeiZiXunView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiZiXunView.h; sourceTree = "<group>"; };
 		046A47CE1FAB427B007EE10F /* WeiZiXunView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiZiXunView.m; sourceTree = "<group>"; };
 		046C924D1FA5B81600F61C73 /* WangYi_News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WangYi_News.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -400,20 +400,20 @@
 			path = Header;
 			sourceTree = "<group>";
 		};
-		044D3D221FB81C0700292118 /* MBProgressHUD */ = {
+		044D3D261FB8421600292118 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				044D3D231FB81C0700292118 /* MBProgressHUD.h */,
-				044D3D241FB81C0700292118 /* MBProgressHUD.m */,
+				044D3D271FB8421600292118 /* MBProgressHUD.h */,
+				044D3D281FB8421600292118 /* MBProgressHUD.m */,
 			);
 			name = MBProgressHUD;
-			path = ../MBProgressHUD;
+			path = "../Third storage/MBProgressHUD-master/MBProgressHUD";
 			sourceTree = "<group>";
 		};
 		046C92441FA5B81600F61C73 = {
 			isa = PBXGroup;
 			children = (
-				044D3D221FB81C0700292118 /* MBProgressHUD */,
+				044D3D261FB8421600292118 /* MBProgressHUD */,
 				041CF9A01FB702FB002DAC79 /* MJRefresh */,
 				04014B1C1FAFEFE900EC3F32 /* JSONModel */,
 				046C924F1FA5B81600F61C73 /* WangYi_News */,
@@ -868,7 +868,7 @@
 				046A47CF1FAB427B007EE10F /* WeiZiXunView.m in Sources */,
 				04914A861FA604AD00E9D346 /* MeView.m in Sources */,
 				041CF9D41FB702FB002DAC79 /* MJRefreshAutoGifFooter.m in Sources */,
-				044D3D251FB81C0700292118 /* MBProgressHUD.m in Sources */,
+				044D3D291FB8421600292118 /* MBProgressHUD.m in Sources */,
 				041CF9D01FB702FB002DAC79 /* MJRefreshBackFooter.m in Sources */,
 				04914A761FA5F4AE00E9D346 /* TabBarController.m in Sources */,
 				041CF9DF1FB702FB002DAC79 /* NSBundle+MJRefresh.m in Sources */,
