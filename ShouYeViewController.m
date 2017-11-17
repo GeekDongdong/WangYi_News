@@ -5,18 +5,23 @@
 //  Created by JACK on 2017/10/29.
 //  Copyright © 2017年 JACK. All rights reserved.
 //
-#define URL @"http://route.showapi.com/109-35"
-#define width self.view.frame.size.width
-#define height self.view.frame.size.height
+
+#define Width self.view.frame.size.width
+#define Height self.view.frame.size.height
 #define Touch UIControlEventTouchUpInside
 #import "ShouYeViewController.h"
 #import "ShouYeTVCell.h"
+#import "ShouYeTVCellTwo.h"
+#import "ShouYeTVCellOnlyText.h"
 #import <AFNetworking.h>
 #import "MJRefreshGifHeader.h"
 #import "MBProgressHUD.h"
 
 @interface ShouYeViewController ()<UITableViewDelegate,UITableViewDataSource>{
     MBProgressHUD *hud;
+    ShouYeTVCell* cellOne;
+    ShouYeTVCellTwo *cellTwo;
+    ShouYeTVCellOnlyText *cellOnlyText;
 }
 
 @end
@@ -36,11 +41,15 @@
     [self.navigationController.navigationBar addSubview:_shouYeView.zhiBoButton];
     [self.navigationController.navigationBar addSubview:_listSV];
     //tableView
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 30, width, height) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 30, Width, Height-30) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+//    _tableView.rowHeight = UITableViewAutomaticDimension;
     [self.view addSubview:_tableView];
     [_tableView registerClass:[ShouYeTVCell class] forCellReuseIdentifier:@"cellId1"];
+    [_tableView registerClass:[ShouYeTVCellTwo class] forCellReuseIdentifier:@"cellId2"];
+    [_tableView registerClass:[ShouYeTVCellOnlyText class] forCellReuseIdentifier:@"cellId3"];
+
     [self getData];
     //下拉刷新gif
     [self addRefreshGif];
@@ -50,6 +59,7 @@
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeAnnularDeterminate;
     hud.label.text = @"Loading";
+    
 }
 
 - (void)addRefreshGif{
@@ -83,19 +93,21 @@
     header.lastUpdatedTimeLabel.textColor = [UIColor lightGrayColor];
 }
 - (void)loadNewData{
-    [self.tableView reloadData];
+    [self getData];
     [self.tableView.mj_header endRefreshing];
 }
 - (void)addScrollView{
-    _listSV = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, width, 30)];
+    _listSV = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, Width, 30)];
     //    _listSV.backgroundColor = [UIColor blackColor];
     _listSV.pagingEnabled = YES;
     _listSV.showsHorizontalScrollIndicator=NO;
     _listSV.delegate =self;
     _listSV.backgroundColor = [UIColor whiteColor];
-    _listSV.contentSize=CGSizeMake(width*3, 30);
+    _listSV.contentSize=CGSizeMake(Width*3, 30);
     [_listSV addSubview:_shouYeView.touTiaoOfListButton];
-    [_shouYeView.touTiaoOfListButton addTarget:self action:@selector(touTiaoOfListTask) forControlEvents:Touch];
+    [_shouYeView.touTiaoOfListButton addTarget:self action:@selector(touTiaoOfListTask:) forControlEvents:Touch];
+    [_shouYeView.shiPinOfListButton addTarget:self action:@selector(shiPinOfListTask:) forControlEvents:Touch];
+     [_shouYeView.yaoWenOfListButton addTarget:self action:@selector(yaoWenOfListTask:) forControlEvents:Touch];
     [_listSV addSubview:_shouYeView.shiPinOfListButton];
     [_listSV addSubview:_shouYeView.yaoWenOfListButton];
     [_listSV addSubview:_shouYeView.yuLeOfListButton];
@@ -115,27 +127,37 @@
     [_listSV addSubview:_shouYeView.qingSongYiKeOfListButton];
     [self.view addSubview:_listSV];
 }
-- (void)touTiaoOfListTask{
+- (void)touTiaoOfListTask:(UIButton *)button{
+    button.selected = !button.selected;
+}
+- (void)shiPinOfListTask:(UIButton *)button{
+    button.selected = !button.selected;
+}
+- (void)yaoWenOfListTask:(UIButton *)button{
+    button.selected = !button.selected;
 }
 - (void)getData{
-    NSDictionary *para = @{
-                          @"showapi_appid":@"49852",
-                          @"showapi_sign":@"81497a5a58de4543afdbb9aa42d32f2c",
-                          @"page":@"1",
-                          @"title":@"娱乐"
-                          };
-    AFHTTPSessionManager *manger = [AFHTTPSessionManager manager];
-    manger.requestSerializer= [AFHTTPRequestSerializer serializer];
-    [manger GET:URL parameters:para progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"请求成功");
-//                NSLog(@"%@",responseObject);
-        _orderModel = [[TVOrderModel alloc] initWithDictionary:responseObject error:nil];
-        [self.tableView reloadData];
-        [hud hideAnimated:YES];
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+
+        NSDictionary *para = @{
+                               @"showapi_appid":@"49852",
+                            @"showapi_sign":@"81497a5a58de4543afdbb9aa42d32f2c",
+                               @"page":@"1",
+                               @"title":@"体育"
+                               };
+    NSString *urlString = @"http://route.showapi.com/109-35";
+        AFHTTPSessionManager *manger = [AFHTTPSessionManager manager];
+        manger.requestSerializer= [AFHTTPRequestSerializer serializer];
+        [manger GET:urlString parameters:para progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSLog(@"请求成功");
+//                            NSLog(@"%@",responseObject);
+            _orderModel = [[TVOrderModel alloc] initWithDictionary:responseObject error:nil];
+                [self.tableView reloadData];
+                [hud hideAnimated:YES];
+
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"请求失败%@",error);
     }];
+
 }
 - (void)backToMain{
     NSLog(@"");
@@ -147,15 +169,37 @@
     NSLog(@"");
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [_orderModel.showapi_res_body.pagebean.allNum intValue] - 1;
+    return _orderModel.showapi_res_body.pagebean.contentlist.count ;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 150;
+    TVcontentlistModel *tvModel = [[TVcontentlistModel alloc]init];
+    tvModel = _orderModel.showapi_res_body.pagebean.contentlist[indexPath.row];
+    if (tvModel.imageurls.count<3&&tvModel.imageurls.count!=0) {
+        return [ShouYeTVCell setIntroductionText:cellOne];
+    }else if (tvModel.imageurls.count==0){
+        return [ShouYeTVCellOnlyText setIntroductionText:cellOnlyText];
+    }
+    else{
+        return [ShouYeTVCellTwo setIntroductionText:cellTwo];
+    }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    ShouYeTVCell* cell = [tableView dequeueReusableCellWithIdentifier:@"cellId1" forIndexPath:indexPath];
-    [cell updateData:_orderModel.showapi_res_body.pagebean.contentlist[indexPath.row]];
-    return cell;
+    TVcontentlistModel *tvModel = [[TVcontentlistModel alloc]init];
+    tvModel = _orderModel.showapi_res_body.pagebean.contentlist[indexPath.row];
+    if (tvModel.imageurls.count<3&&tvModel.imageurls.count!=0) {
+            cellOne = [tableView dequeueReusableCellWithIdentifier:@"cellId1" forIndexPath:indexPath];
+            [cellOne updateData:tvModel];
+            return cellOne;
+    }else if (tvModel.imageurls.count==0){
+        cellOnlyText = [tableView dequeueReusableCellWithIdentifier:@"cellId3" forIndexPath:indexPath];
+        [cellOnlyText updateData:tvModel];
+        return cellOnlyText;
+    }
+    else{
+        cellTwo = [tableView dequeueReusableCellWithIdentifier:@"cellId2" forIndexPath:indexPath];
+        [cellTwo updateData:tvModel];
+            return cellTwo;
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
