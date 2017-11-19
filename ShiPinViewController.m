@@ -23,7 +23,6 @@
     [self.navigationController.navigationBar addSubview:_shiPinView.titleButton];
 }
 - (void)backToMain{
-    NSLog(@"");
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

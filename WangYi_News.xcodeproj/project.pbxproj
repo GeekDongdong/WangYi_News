@@ -68,6 +68,10 @@
 		0429CFA81FBB1E4700D610EF /* UIView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0429CF8C1FBB1E4700D610EF /* UIView+WebCache.m */; };
 		0429CFA91FBB1E4700D610EF /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0429CF8E1FBB1E4700D610EF /* UIView+WebCacheOperation.m */; };
 		044D3D291FB8421600292118 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 044D3D281FB8421600292118 /* MBProgressHUD.m */; };
+		0453F8A91FC1953D000C75B0 /* ShiPinOfScrollViewCtrler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453F8A81FC1953D000C75B0 /* ShiPinOfScrollViewCtrler.m */; };
+		0453F8AC1FC19588000C75B0 /* YaoWenOfScrollViewCtrler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453F8AB1FC19588000C75B0 /* YaoWenOfScrollViewCtrler.m */; };
+		0453F8AF1FC19599000C75B0 /* YuLeOfScrollViewCtrler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453F8AE1FC19599000C75B0 /* YuLeOfScrollViewCtrler.m */; };
+		0453F8B21FC195B0000C75B0 /* TiYuOfScrollViewCtrler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453F8B11FC195B0000C75B0 /* TiYuOfScrollViewCtrler.m */; };
 		046A47CF1FAB427B007EE10F /* WeiZiXunView.m in Sources */ = {isa = PBXBuildFile; fileRef = 046A47CE1FAB427B007EE10F /* WeiZiXunView.m */; };
 		046C92521FA5B81600F61C73 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 046C92511FA5B81600F61C73 /* main.m */; };
 		046C92551FA5B81600F61C73 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 046C92541FA5B81600F61C73 /* AppDelegate.m */; };
@@ -241,6 +245,14 @@
 		0429CF8E1FBB1E4700D610EF /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		044D3D271FB8421600292118 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		044D3D281FB8421600292118 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		0453F8A71FC1953D000C75B0 /* ShiPinOfScrollViewCtrler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiPinOfScrollViewCtrler.h; sourceTree = "<group>"; };
+		0453F8A81FC1953D000C75B0 /* ShiPinOfScrollViewCtrler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiPinOfScrollViewCtrler.m; sourceTree = "<group>"; };
+		0453F8AA1FC19588000C75B0 /* YaoWenOfScrollViewCtrler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YaoWenOfScrollViewCtrler.h; sourceTree = "<group>"; };
+		0453F8AB1FC19588000C75B0 /* YaoWenOfScrollViewCtrler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YaoWenOfScrollViewCtrler.m; sourceTree = "<group>"; };
+		0453F8AD1FC19599000C75B0 /* YuLeOfScrollViewCtrler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YuLeOfScrollViewCtrler.h; sourceTree = "<group>"; };
+		0453F8AE1FC19599000C75B0 /* YuLeOfScrollViewCtrler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YuLeOfScrollViewCtrler.m; sourceTree = "<group>"; };
+		0453F8B01FC195B0000C75B0 /* TiYuOfScrollViewCtrler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiYuOfScrollViewCtrler.h; sourceTree = "<group>"; };
+		0453F8B11FC195B0000C75B0 /* TiYuOfScrollViewCtrler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TiYuOfScrollViewCtrler.m; sourceTree = "<group>"; };
 		046A47CD1FAB427B007EE10F /* WeiZiXunView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiZiXunView.h; sourceTree = "<group>"; };
 		046A47CE1FAB427B007EE10F /* WeiZiXunView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiZiXunView.m; sourceTree = "<group>"; };
 		046C924D1FA5B81600F61C73 /* WangYi_News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WangYi_News.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -569,6 +581,21 @@
 			path = "../Third storage/MBProgressHUD-master/MBProgressHUD";
 			sourceTree = "<group>";
 		};
+		0453F8A61FC194AF000C75B0 /* ScrollViewOfShiPinCtrler */ = {
+			isa = PBXGroup;
+			children = (
+				0453F8A71FC1953D000C75B0 /* ShiPinOfScrollViewCtrler.h */,
+				0453F8A81FC1953D000C75B0 /* ShiPinOfScrollViewCtrler.m */,
+				0453F8AA1FC19588000C75B0 /* YaoWenOfScrollViewCtrler.h */,
+				0453F8AB1FC19588000C75B0 /* YaoWenOfScrollViewCtrler.m */,
+				0453F8AD1FC19599000C75B0 /* YuLeOfScrollViewCtrler.h */,
+				0453F8AE1FC19599000C75B0 /* YuLeOfScrollViewCtrler.m */,
+				0453F8B01FC195B0000C75B0 /* TiYuOfScrollViewCtrler.h */,
+				0453F8B11FC195B0000C75B0 /* TiYuOfScrollViewCtrler.m */,
+			);
+			name = ScrollViewOfShiPinCtrler;
+			sourceTree = "<group>";
+		};
 		046C92441FA5B81600F61C73 = {
 			isa = PBXGroup;
 			children = (
@@ -682,6 +709,7 @@
 			children = (
 				046C92B21FA5C77900F61C73 /* ShouYeViewController.h */,
 				046C92B31FA5C77900F61C73 /* ShouYeViewController.m */,
+				0453F8A61FC194AF000C75B0 /* ScrollViewOfShiPinCtrler */,
 			);
 			name = ShouYe;
 			path = ..;
@@ -1062,7 +1090,10 @@
 				041CF9DE1FB702FB002DAC79 /* MJRefreshConst.m in Sources */,
 				04014B3A1FAFEFE900EC3F32 /* JSONKeyMapper.m in Sources */,
 				04014B391FAFEFE900EC3F32 /* JSONModel+networking.m in Sources */,
+				0453F8A91FC1953D000C75B0 /* ShiPinOfScrollViewCtrler.m in Sources */,
+				0453F8B21FC195B0000C75B0 /* TiYuOfScrollViewCtrler.m in Sources */,
 				04014B3B1FAFEFE900EC3F32 /* JSONValueTransformer.m in Sources */,
+				0453F8AF1FC19599000C75B0 /* YuLeOfScrollViewCtrler.m in Sources */,
 				0429CFA91FBB1E4700D610EF /* UIView+WebCacheOperation.m in Sources */,
 				041CF9D81FB702FB002DAC79 /* MJRefreshBackNormalFooter.m in Sources */,
 				0429CFA21FBB1E4700D610EF /* UIImage+ForceDecode.m in Sources */,
@@ -1082,6 +1113,7 @@
 				04914A831FA6048F00E9D346 /* ZhiBoView.m in Sources */,
 				046C92A71FA5C64C00F61C73 /* View+MASAdditions.m in Sources */,
 				04914A801FA5FA8D00E9D346 /* ShiPinView.m in Sources */,
+				0453F8AC1FC19588000C75B0 /* YaoWenOfScrollViewCtrler.m in Sources */,
 				046C92BA1FA5C79000F61C73 /* ZhiBoViewController.m in Sources */,
 				04014B351FAFEFE900EC3F32 /* JSONModelClassProperty.m in Sources */,
 				0429CFA41FBB1E4700D610EF /* UIImage+MultiFormat.m in Sources */,
