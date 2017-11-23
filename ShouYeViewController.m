@@ -16,8 +16,8 @@
 #import <AFNetworking.h>
 #import "MJRefreshGifHeader.h"
 #import "MBProgressHUD.h"
-#import "ShiPinOfScrollViewCtrler.h"
-
+#import "LIstOfScrollView.h"
+int keyOfScrollView;
 @interface ShouYeViewController ()<UITableViewDelegate,UITableViewDataSource>{
     MBProgressHUD *hud;
     ShouYeTVCell* cellOne;
@@ -42,8 +42,10 @@
     [self.navigationController.navigationBar addSubview:_shouYeView.zhiBoButton];
     //scrollView
     [self addScrollView];
+    //列表listScrollView
+    [self addListScrollView];
     //tableView
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, Width, Height-30) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, Width, Height-140) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectZero];
@@ -51,37 +53,74 @@
     [_tableView registerClass:[ShouYeTVCell class] forCellReuseIdentifier:@"cellId1"];
     [_tableView registerClass:[ShouYeTVCellTwo class] forCellReuseIdentifier:@"cellId2"];
     [_tableView registerClass:[ShouYeTVCellOnlyText class] forCellReuseIdentifier:@"cellId3"];
-    [self getData];
-    //shiPinTableView
-    _shiPinTableView = [[UITableView alloc]initWithFrame:CGRectMake(Width, 0, Width, Height-30) style:UITableViewStylePlain];
-    _shiPinTableView.delegate = self;
-    _shiPinTableView.dataSource = self;
-    [self.scrollView addSubview:_shiPinTableView];
-    [_shiPinTableView registerClass:[ShouYeTVCell class] forCellReuseIdentifier:@"cellId1"];
-    [_shiPinTableView registerClass:[ShouYeTVCellTwo class] forCellReuseIdentifier:@"cellId2"];
-    [_shiPinTableView registerClass:[ShouYeTVCellOnlyText class] forCellReuseIdentifier:@"cellId3"];
-
+    //初始化可变字典
+    _requestPara = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+             @"49852",@"showapi_appid",
+             @"81497a5a58de4543afdbb9aa42d32f2c",@"showapi_sign",
+             @"1",@"page",
+             @"篮球",@"title", nil];
+    [self getData:_tableView];
+    
     //下拉刷新gif
     [self addRefreshGif];
 
-    //列表segmentControl
-    [self addSegmentControl];
+
     //MBProgressHUD
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeAnnularDeterminate;
     hud.label.text = @"Loading";
     
 }
+- (void)addListScrollView{
+    _listSV = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, Width, 30)];
+    //    _listSV.backgroundColor = [UIColor blackColor];
+    _listSV.pagingEnabled = YES;
+    _listSV.showsHorizontalScrollIndicator=NO;
+    _listSV.delegate =self;
+    _listSV.backgroundColor = [UIColor whiteColor];
+    _listSV.contentSize=CGSizeMake(Width*3, 30);
+    [_listSV addSubview:_shouYeView.touTiaoOfListButton];
+    _shouYeView.touTiaoOfListButton.selected = YES;
+    [_shouYeView.touTiaoOfListButton addTarget:self action:@selector(touTiaoOfListTask:) forControlEvents:Touch];
+    [_shouYeView.shiPinOfListButton addTarget:self action:@selector(shiPinOfListTask:) forControlEvents:Touch];
+    [_shouYeView.yaoWenOfListButton addTarget:self action:@selector(yaoWenOfListTask:) forControlEvents:Touch];
+    [_listSV addSubview:_shouYeView.shiPinOfListButton];
+    [_listSV addSubview:_shouYeView.yaoWenOfListButton];
+    [_listSV addSubview:_shouYeView.yuLeOfListButton];
+    [_listSV addSubview:_shouYeView.tiYuOfListButton];
+    [_listSV addSubview:_shouYeView.duanZiOfListButton];
+    [_listSV addSubview:_shouYeView.caiJingOfListButton];
+    [_listSV addSubview:_shouYeView.keJiOfListButton];
+    [_listSV addSubview:_shouYeView.qiCheOfListButton];
+    [_listSV addSubview:_shouYeView.sheHuiOfListButton];
+    [_listSV addSubview:_shouYeView.junShiOfListButton];
+    [_listSV addSubview:_shouYeView.NBAOfListButton];
+    [_listSV addSubview:_shouYeView.fangChanOfListButton];
+    [_listSV addSubview:_shouYeView.guPiaoOfListButton];
+    [_listSV addSubview:_shouYeView.jiaJuOfListButton];
+    [_listSV addSubview:_shouYeView.youXiOfListButton];
+    [_listSV addSubview:_shouYeView.jianKangOfListButton];
+    [_listSV addSubview:_shouYeView.qingSongYiKeOfListButton];
+    //初始化字典
+    _listOfScrollViewArray = [[NSArray alloc]initWithObjects:
+        _shouYeView.touTiaoOfListButton,
+        _shouYeView.shiPinOfListButton,
+        _shouYeView.yaoWenOfListButton,
+        _shouYeView.yuLeOfListButton,
+        _shouYeView.tiYuOfListButton,nil];
+
+    [self.view addSubview:_listSV];
+}
 - (void)addScrollView{
     
-_scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,30, 375, Height-30)];
-_scrollView.contentSize = CGSizeMake(375 * 3, 0);
-_scrollView.delegate = self;
-_scrollView.pagingEnabled = YES;
-_scrollView.scrollEnabled = YES;
-_scrollView.bounces = YES;
-_scrollView.showsHorizontalScrollIndicator = NO;
-[self.view addSubview:_scrollView];
+    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,30, 375, Height-30)];
+    _scrollView.contentSize = CGSizeMake(375 * 3, 0);
+    _scrollView.delegate = self;
+    _scrollView.pagingEnabled = YES;
+    _scrollView.scrollEnabled = YES;
+    _scrollView.bounces = YES;
+    _scrollView.showsHorizontalScrollIndicator = NO;
+    [self.view addSubview:_scrollView];
 }
 - (void)addRefreshGif{
     MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
@@ -114,75 +153,38 @@ _scrollView.showsHorizontalScrollIndicator = NO;
     header.lastUpdatedTimeLabel.textColor = [UIColor lightGrayColor];
 }
 - (void)loadNewData{
-    [self getData];
+    [self getData:_tableView];
     [self.tableView.mj_header endRefreshing];
 }
-- (void)addSegmentControl{
-    NSArray *array = @[@"头条", @"视频", @"要闻",@"娱乐",@"体育",@"段子",@"财经",@"科技",@"汽车",@"社会",@"军事",@"时尚"];
-    _segmentControl = [[UISegmentedControl alloc] initWithItems:array];
-    _segmentControl.frame = CGRectMake(0, 64, 375*2, 30);
-    _segmentControl.selectedSegmentIndex = 0;
-    _segmentControl.tintColor = [UIColor whiteColor];
-    _segmentControl.momentary = NO;
-    // 设置颜色
-    [_segmentControl setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor], NSFontAttributeName:[UIFont systemFontOfSize:16]}
-                                  forState:UIControlStateNormal];
-    [_segmentControl setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor], NSFontAttributeName:[UIFont systemFontOfSize:16]}
-                                  forState:UIControlStateSelected];
-    [_segmentControl setBackgroundColor:[UIColor whiteColor]];
-    [_segmentControl addTarget:self action:@selector(doSomethingInSegment:) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:_segmentControl];
-}
--(void)doSomethingInSegment:(UISegmentedControl *)Seg
-{
-    NSInteger Index = Seg.selectedSegmentIndex;
-    switch (Index) {
-        case 0:
-            [_scrollView scrollRectToVisible:CGRectMake(0, 0, 375, 550) animated:YES];
-            break;
-        case 1:
-            [_scrollView scrollRectToVisible:CGRectMake(375, 0, 375, 550) animated:YES];
-            break;
-        case 2:
-            [_scrollView scrollRectToVisible:CGRectMake(375 * 2, 0, 375, 550) animated:YES];
-            break;
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    
+    int number=(int)scrollView.contentOffset.x/Width;
+    if (keyOfScrollView!=number) {
+        [[_listOfScrollViewArray objectAtIndex:keyOfScrollView]setSelected:NO];//把原来的buttonSelected设置NO
+        [[_listOfScrollViewArray objectAtIndex:number]setSelected:YES];//把现在的buttonSelected设置YES
+        LIstOfScrollView *listOfScrollView = [[LIstOfScrollView alloc]init];
+        listOfScrollView.frame = CGRectMake(Width*number, 0, Width, 550);
+        [self.scrollView addSubview:listOfScrollView];
+        keyOfScrollView = number;//判断是否为上下滑动，如果是，则不再执行此方法
     }
 }
-
 - (void)touTiaoOfListTask:(UIButton *)button{
     
+    button.selected = YES;
+    [[_listOfScrollViewArray objectAtIndex:keyOfScrollView]setSelected:NO];
+    [self.scrollView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
 }
 - (void)shiPinOfListTask:(UIButton *)button{
-    button.selected = !button.selected;
-    ShiPinOfScrollViewCtrler *shiPinOfScrollViewCtrler = [[ShiPinOfScrollViewCtrler alloc]init];
-    [self.navigationController pushViewController:shiPinOfScrollViewCtrler animated:YES];
-    
+
+    button.selected = YES;
+    [[_listOfScrollViewArray objectAtIndex:keyOfScrollView]setSelected:NO];
+    [self.scrollView scrollRectToVisible:CGRectMake(Width, 0, Width, 550) animated:YES];
+    LIstOfScrollView *listOfScrollView = [[LIstOfScrollView alloc]init];
+    listOfScrollView.frame = CGRectMake(Width, 0, Width, 550);
+    [self.scrollView addSubview:listOfScrollView];
 }
 - (void)yaoWenOfListTask:(UIButton *)button{
     button.selected = !button.selected;
-}
-- (void)getData{
-
-        NSDictionary *para = @{
-                               @"showapi_appid":@"49852",
-                            @"showapi_sign":@"81497a5a58de4543afdbb9aa42d32f2c",
-                               @"page":@"1",
-                               @"title":@"体育"
-                               };
-    NSString *urlString = @"http://route.showapi.com/109-35";
-        AFHTTPSessionManager *manger = [AFHTTPSessionManager manager];
-        manger.requestSerializer= [AFHTTPRequestSerializer serializer];
-        [manger GET:urlString parameters:para progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            NSLog(@"请求成功");
-//                            NSLog(@"%@",responseObject);
-            _orderModel = [[TVOrderModel alloc] initWithDictionary:responseObject error:nil];
-                [self.tableView reloadData];
-                [hud hideAnimated:YES];
-
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"请求失败%@",error);
-    }];
-
 }
 - (void)backToMain{
      [self.tableView  scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
