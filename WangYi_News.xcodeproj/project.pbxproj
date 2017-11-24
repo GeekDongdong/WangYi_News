@@ -145,8 +145,8 @@
 		04014B401FB009BA00EC3F32 /* TVOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVOrderModel.m; sourceTree = "<group>"; };
 		04014B421FB0701000EC3F32 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		04014B491FB0706E00EC3F32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "../../Think Caculator/Count/Base.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
-		0404AE711FC2DFA4002FA8A7 /* LIstOfScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LIstOfScrollView.h; sourceTree = "<group>"; };
-		0404AE721FC2DFA4002FA8A7 /* LIstOfScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LIstOfScrollView.m; sourceTree = "<group>"; };
+		0404AE711FC2DFA4002FA8A7 /* LIstOfScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LIstOfScrollView.h; path = ../LIstOfScrollView.h; sourceTree = "<group>"; };
+		0404AE721FC2DFA4002FA8A7 /* LIstOfScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LIstOfScrollView.m; path = ../LIstOfScrollView.m; sourceTree = "<group>"; };
 		041CF9A21FB702FB002DAC79 /* MJRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoFooter.h; sourceTree = "<group>"; };
 		041CF9A31FB702FB002DAC79 /* MJRefreshAutoFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoFooter.m; sourceTree = "<group>"; };
 		041CF9A41FB702FB002DAC79 /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
@@ -685,8 +685,6 @@
 			children = (
 				046C92B21FA5C77900F61C73 /* ShouYeViewController.h */,
 				046C92B31FA5C77900F61C73 /* ShouYeViewController.m */,
-				0404AE711FC2DFA4002FA8A7 /* LIstOfScrollView.h */,
-				0404AE721FC2DFA4002FA8A7 /* LIstOfScrollView.m */,
 			);
 			name = ShouYe;
 			path = ..;
@@ -770,6 +768,8 @@
 			children = (
 				04914A7B1FA5FA5400E9D346 /* ShouYeView.h */,
 				04914A7C1FA5FA5400E9D346 /* ShouYeView.m */,
+				0404AE711FC2DFA4002FA8A7 /* LIstOfScrollView.h */,
+				0404AE721FC2DFA4002FA8A7 /* LIstOfScrollView.m */,
 				04FFA3EB1FAC701E003384CA /* ShouYeTVCell.h */,
 				04FFA3EC1FAC701E003384CA /* ShouYeTVCell.m */,
 				04F832901FBC577600D0635F /* ShouYeTVCellTwo.h */,

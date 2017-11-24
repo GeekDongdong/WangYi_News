@@ -13,9 +13,10 @@
 @interface ShouYeViewController : UIViewController
 @property(nonatomic,strong)ShouYeView *shouYeView;
 @property(nonatomic,strong)UITableView *tableView;
-@property(nonatomic,strong) TVOrderModel *orderModel;
+//@property(nonatomic,strong) TVOrderModel *orderModel;
 @property(nonatomic,strong)UIScrollView *scrollView;
 @property(nonatomic,strong)UIScrollView *listSV;
 @property(nonatomic,strong) NSMutableDictionary *requestPara;
 @property(nonatomic,strong) NSArray *listOfScrollViewArray;
+@property(nonatomic,strong) NSArray *titleOfListArray;
 @end

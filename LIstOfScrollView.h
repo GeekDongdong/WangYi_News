@@ -8,9 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "TVOrderModel.h"
+#import "ShouYeTVCell.h"
+#import "ShouYeTVCellTwo.h"
+#import "ShouYeTVCellOnlyText.h"
 
 @interface LIstOfScrollView : UIView<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong) UITableView *tableView;
 @property(nonatomic,strong) TVOrderModel *orderModel;
 @property(nonatomic,strong) NSDictionary *dataPara;
+@property(nonatomic,strong) ShouYeTVCell* cellOne;
+@property(nonatomic,strong) ShouYeTVCellTwo *cellTwo;
+@property(nonatomic,strong) ShouYeTVCellOnlyText *cellOnlyText;
+- (id)init:(NSString *)title;
 @end

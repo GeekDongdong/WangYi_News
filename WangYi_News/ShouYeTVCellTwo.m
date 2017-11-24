@@ -84,7 +84,7 @@
     cell.middleImage.frame = CGRectMake(130, cell.titleLabel.frame.size.height+20, 110, 70);
     cell.rightImage.frame = CGRectMake(250, cell.titleLabel.frame.size.height+20, 110, 70);
     cell.timeLabel.frame = CGRectMake(10,  cell.titleLabel.frame.size.height+100, 130, 10);
-    cell.sourceLabel.frame = CGRectMake(310, cell.titleLabel.frame.size.height+100, 60, 10);
+    cell.sourceLabel.frame = CGRectMake(300, cell.titleLabel.frame.size.height+100, 70, 10);
     //计算出自适应的高度
     frame.size.height = labelSize.height+120;
     
