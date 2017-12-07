@@ -88,15 +88,13 @@
 		046C92A71FA5C64C00F61C73 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 046C929A1FA5C64C00F61C73 /* View+MASAdditions.m */; };
 		046C92A81FA5C64C00F61C73 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 046C929D1FA5C64C00F61C73 /* ViewController+MASAdditions.m */; };
 		046C92B41FA5C77900F61C73 /* ShouYeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046C92B31FA5C77900F61C73 /* ShouYeViewController.m */; };
-		046C92B71FA5C78600F61C73 /* ShiPinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046C92B61FA5C78600F61C73 /* ShiPinViewController.m */; };
-		046C92BA1FA5C79000F61C73 /* ZhiBoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046C92B91FA5C79000F61C73 /* ZhiBoViewController.m */; };
 		046C92BD1FA5C7A600F61C73 /* WeiZiXunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046C92BC1FA5C7A600F61C73 /* WeiZiXunViewController.m */; };
 		046C92C01FA5C7B000F61C73 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046C92BF1FA5C7B000F61C73 /* MeViewController.m */; };
 		04914A761FA5F4AE00E9D346 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04914A751FA5F4AE00E9D346 /* TabBarController.m */; };
 		04914A7D1FA5FA5400E9D346 /* ShouYeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04914A7C1FA5FA5400E9D346 /* ShouYeView.m */; };
-		04914A801FA5FA8D00E9D346 /* ShiPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04914A7F1FA5FA8D00E9D346 /* ShiPinView.m */; };
-		04914A831FA6048F00E9D346 /* ZhiBoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04914A821FA6048F00E9D346 /* ZhiBoView.m */; };
 		04914A861FA604AD00E9D346 /* MeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04914A851FA604AD00E9D346 /* MeView.m */; };
+		04B24F8D1FCA8FB8004FAFA3 /* HighTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B24F8C1FCA8FB8004FAFA3 /* HighTabBar.m */; };
+		04DA003C1FC946B300E59A8C /* LinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DA003B1FC946B300E59A8C /* LinkViewController.m */; };
 		04F538371FBDC0FA004162FF /* ShouYeTVCellOnlyText.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F538361FBDC0FA004162FF /* ShouYeTVCellOnlyText.m */; };
 		04F832921FBC577600D0635F /* ShouYeTVCellTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F832911FBC577600D0635F /* ShouYeTVCellTwo.m */; };
 		04FFA3ED1FAC701E003384CA /* ShouYeTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FFA3EC1FAC701E003384CA /* ShouYeTVCell.m */; };
@@ -288,10 +286,6 @@
 		046C929D1FA5C64C00F61C73 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
 		046C92B21FA5C77900F61C73 /* ShouYeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShouYeViewController.h; sourceTree = "<group>"; };
 		046C92B31FA5C77900F61C73 /* ShouYeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShouYeViewController.m; sourceTree = "<group>"; };
-		046C92B51FA5C78600F61C73 /* ShiPinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiPinViewController.h; sourceTree = "<group>"; };
-		046C92B61FA5C78600F61C73 /* ShiPinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiPinViewController.m; sourceTree = "<group>"; };
-		046C92B81FA5C79000F61C73 /* ZhiBoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZhiBoViewController.h; sourceTree = "<group>"; };
-		046C92B91FA5C79000F61C73 /* ZhiBoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZhiBoViewController.m; sourceTree = "<group>"; };
 		046C92BB1FA5C7A600F61C73 /* WeiZiXunViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiZiXunViewController.h; sourceTree = "<group>"; };
 		046C92BC1FA5C7A600F61C73 /* WeiZiXunViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiZiXunViewController.m; sourceTree = "<group>"; };
 		046C92BE1FA5C7B000F61C73 /* MeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeViewController.h; sourceTree = "<group>"; };
@@ -300,12 +294,12 @@
 		04914A751FA5F4AE00E9D346 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		04914A7B1FA5FA5400E9D346 /* ShouYeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShouYeView.h; sourceTree = "<group>"; };
 		04914A7C1FA5FA5400E9D346 /* ShouYeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShouYeView.m; sourceTree = "<group>"; };
-		04914A7E1FA5FA8D00E9D346 /* ShiPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiPinView.h; sourceTree = "<group>"; };
-		04914A7F1FA5FA8D00E9D346 /* ShiPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiPinView.m; sourceTree = "<group>"; };
-		04914A811FA6048F00E9D346 /* ZhiBoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZhiBoView.h; sourceTree = "<group>"; };
-		04914A821FA6048F00E9D346 /* ZhiBoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZhiBoView.m; sourceTree = "<group>"; };
 		04914A841FA604AD00E9D346 /* MeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeView.h; sourceTree = "<group>"; };
 		04914A851FA604AD00E9D346 /* MeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeView.m; sourceTree = "<group>"; };
+		04B24F8B1FCA8FB8004FAFA3 /* HighTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighTabBar.h; sourceTree = "<group>"; };
+		04B24F8C1FCA8FB8004FAFA3 /* HighTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighTabBar.m; sourceTree = "<group>"; };
+		04DA003A1FC946B300E59A8C /* LinkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkViewController.h; sourceTree = "<group>"; };
+		04DA003B1FC946B300E59A8C /* LinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkViewController.m; sourceTree = "<group>"; };
 		04F538351FBDC0FA004162FF /* ShouYeTVCellOnlyText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShouYeTVCellOnlyText.h; sourceTree = "<group>"; };
 		04F538361FBDC0FA004162FF /* ShouYeTVCellOnlyText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShouYeTVCellOnlyText.m; sourceTree = "<group>"; };
 		04F832901FBC577600D0635F /* ShouYeTVCellTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShouYeTVCellTwo.h; sourceTree = "<group>"; };
@@ -608,6 +602,8 @@
 				046C92571FA5B81600F61C73 /* ViewController.m */,
 				04914A741FA5F4AE00E9D346 /* TabBarController.h */,
 				04914A751FA5F4AE00E9D346 /* TabBarController.m */,
+				04B24F8B1FCA8FB8004FAFA3 /* HighTabBar.h */,
+				04B24F8C1FCA8FB8004FAFA3 /* HighTabBar.m */,
 				04914A771FA5F9D100E9D346 /* Controller */,
 				04914A7A1FA5FA1A00E9D346 /* View */,
 				04914A791FA5F9FA00E9D346 /* Model */,
@@ -685,28 +681,10 @@
 			children = (
 				046C92B21FA5C77900F61C73 /* ShouYeViewController.h */,
 				046C92B31FA5C77900F61C73 /* ShouYeViewController.m */,
+				04DA003A1FC946B300E59A8C /* LinkViewController.h */,
+				04DA003B1FC946B300E59A8C /* LinkViewController.m */,
 			);
 			name = ShouYe;
-			path = ..;
-			sourceTree = "<group>";
-		};
-		046C92AE1FA5C6F500F61C73 /* ShiPin */ = {
-			isa = PBXGroup;
-			children = (
-				046C92B51FA5C78600F61C73 /* ShiPinViewController.h */,
-				046C92B61FA5C78600F61C73 /* ShiPinViewController.m */,
-			);
-			name = ShiPin;
-			path = ..;
-			sourceTree = "<group>";
-		};
-		046C92AF1FA5C71100F61C73 /* ZhiBo */ = {
-			isa = PBXGroup;
-			children = (
-				046C92B81FA5C79000F61C73 /* ZhiBoViewController.h */,
-				046C92B91FA5C79000F61C73 /* ZhiBoViewController.m */,
-			);
-			name = ZhiBo;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -734,8 +712,6 @@
 			isa = PBXGroup;
 			children = (
 				046C92AD1FA5C6BF00F61C73 /* ShouYe */,
-				046C92AE1FA5C6F500F61C73 /* ShiPin */,
-				046C92AF1FA5C71100F61C73 /* ZhiBo */,
 				046C92B01FA5C71D00F61C73 /* WeiZiXun */,
 				046C92B11FA5C72900F61C73 /* Me */,
 			);
@@ -755,8 +731,6 @@
 			isa = PBXGroup;
 			children = (
 				04FFA3EA1FAC6FC6003384CA /* ShouYeView */,
-				04FFA3EE1FAC702B003384CA /* ShiPinView */,
-				04FFA3EF1FAC703D003384CA /* ZhiBoView */,
 				04FFA3F01FAC704A003384CA /* WeiZiXunView */,
 				04FFA3F11FAC705A003384CA /* MeView */,
 			);
@@ -778,24 +752,6 @@
 				04F538361FBDC0FA004162FF /* ShouYeTVCellOnlyText.m */,
 			);
 			name = ShouYeView;
-			sourceTree = "<group>";
-		};
-		04FFA3EE1FAC702B003384CA /* ShiPinView */ = {
-			isa = PBXGroup;
-			children = (
-				04914A7E1FA5FA8D00E9D346 /* ShiPinView.h */,
-				04914A7F1FA5FA8D00E9D346 /* ShiPinView.m */,
-			);
-			name = ShiPinView;
-			sourceTree = "<group>";
-		};
-		04FFA3EF1FAC703D003384CA /* ZhiBoView */ = {
-			isa = PBXGroup;
-			children = (
-				04914A811FA6048F00E9D346 /* ZhiBoView.h */,
-				04914A821FA6048F00E9D346 /* ZhiBoView.m */,
-			);
-			name = ZhiBoView;
 			sourceTree = "<group>";
 		};
 		04FFA3F01FAC704A003384CA /* WeiZiXunView */ = {
@@ -1063,6 +1019,7 @@
 				0429CFA51FBB1E4700D610EF /* UIImage+WebP.m in Sources */,
 				041CF9CF1FB702FB002DAC79 /* MJRefreshAutoFooter.m in Sources */,
 				0429CF921FBB1E4700D610EF /* NSImage+WebCache.m in Sources */,
+				04B24F8D1FCA8FB8004FAFA3 /* HighTabBar.m in Sources */,
 				046C92A21FA5C64C00F61C73 /* MASLayoutConstraint.m in Sources */,
 				0429CF9C1FBB1E4700D610EF /* SDWebImageGIFCoder.m in Sources */,
 				041CF9DE1FB702FB002DAC79 /* MJRefreshConst.m in Sources */,
@@ -1085,10 +1042,7 @@
 				041CF9D51FB702FB002DAC79 /* MJRefreshAutoNormalFooter.m in Sources */,
 				0429CF951FBB1E4700D610EF /* SDWebImageCoder.m in Sources */,
 				046C92A81FA5C64C00F61C73 /* ViewController+MASAdditions.m in Sources */,
-				04914A831FA6048F00E9D346 /* ZhiBoView.m in Sources */,
 				046C92A71FA5C64C00F61C73 /* View+MASAdditions.m in Sources */,
-				04914A801FA5FA8D00E9D346 /* ShiPinView.m in Sources */,
-				046C92BA1FA5C79000F61C73 /* ZhiBoViewController.m in Sources */,
 				04014B351FAFEFE900EC3F32 /* JSONModelClassProperty.m in Sources */,
 				0429CFA41FBB1E4700D610EF /* UIImage+MultiFormat.m in Sources */,
 				0429CF9E1FBB1E4700D610EF /* SDWebImageManager.m in Sources */,
@@ -1098,7 +1052,7 @@
 				0429CFA31FBB1E4700D610EF /* UIImage+GIF.m in Sources */,
 				0429CF931FBB1E4700D610EF /* SDImageCache.m in Sources */,
 				041CF9D31FB702FB002DAC79 /* MJRefreshHeader.m in Sources */,
-				046C92B71FA5C78600F61C73 /* ShiPinViewController.m in Sources */,
+				04DA003C1FC946B300E59A8C /* LinkViewController.m in Sources */,
 				0429CFA11FBB1E4700D610EF /* UIButton+WebCache.m in Sources */,
 				0429CF941FBB1E4700D610EF /* SDImageCacheConfig.m in Sources */,
 				0429CF991FBB1E4700D610EF /* SDWebImageDownloader.m in Sources */,

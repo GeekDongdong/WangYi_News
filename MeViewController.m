@@ -20,6 +20,21 @@
     _meView = [[MeView alloc]init];
     [_meView.titleButton addTarget:self action:@selector(backToMain) forControlEvents:Touch];
     [self.navigationController.navigationBar addSubview:_meView.titleButton];
+    //nightModeSwitch
+    _nightModeSwitch = [[UISwitch alloc]initWithFrame:CGRectMake(100,200,100,40)];
+    [_nightModeSwitch addTarget:self action:@selector(switchValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:_nightModeSwitch];
+}
+- (void)switchValueChanged:(UISwitch *) sender {
+    if(sender.isOn == YES){
+        self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:153.0/255 green:3.0/255 blue:3.0/255 alpha:1];       
+        NSNotification *notification =[NSNotification notificationWithName:@"switchDayOrNightMode" object:@"1" userInfo:nil];
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
+    }else{
+        self.navigationController.navigationBar.barTintColor = [UIColor redColor];
+        NSNotification *notification =[NSNotification notificationWithName:@"switchDayOrNightMode" object:@"0" userInfo:nil];
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
+    }
 }
 - (void)backToMain{
     NSLog(@"");
@@ -28,15 +43,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

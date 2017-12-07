@@ -9,14 +9,19 @@
 #import <AFNetworking.h>
 #import "MBProgressHUD.h"
 #import "MJRefreshGifHeader.h"
+#import "MJRefreshFooter.h"
+#import "MJRefreshAutoGifFooter.h"
+
 NSString* listTitle;
 @implementation LIstOfScrollView{
     MBProgressHUD *hud;
-
 }
-- (id)init:(NSString *)title{
+- (id)initWithTitle:(NSString *)title{
     self = [super init];
     if (self) {
+        //_dataPara
+            _dataPara =  [NSMutableDictionary dictionaryWithObjectsAndKeys:@"49852",@"showapi_appid",@"81497a5a58de4543afdbb9aa42d32f2c",@"showapi_sign",@"1", @"page",title, @"channelName",@"10",@"maxResult",nil];
+        //_tableView
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 375, 525) style:UITableViewStylePlain];
 //        _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -29,7 +34,7 @@ NSString* listTitle;
         listTitle = title;
         //MBProgressHUD
         hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
-        hud.mode = MBProgressHUDModeAnnularDeterminate;
+        hud.mode = MBProgressHUDModeIndeterminate;
         hud.label.text = @"Loading";
         //addRefreshGif
         [self addRefreshGif];
@@ -37,12 +42,7 @@ NSString* listTitle;
     return self;
 }
 - (void)getData:(NSString *)title{
-    _dataPara = @{
-                           @"showapi_appid":@"49852",
-                       @"showapi_sign":@"81497a5a58de4543afdbb9aa42d32f2c",
-                           @"page":@"1",
-                           @"title":title
-                           };
+    __weak LIstOfScrollView *weakself = self;
     NSString *urlString = @"http://route.showapi.com/109-35";
     AFHTTPSessionManager *manger = [AFHTTPSessionManager manager];
     manger.requestSerializer= [AFHTTPRequestSerializer serializer];
@@ -50,11 +50,14 @@ NSString* listTitle;
 //        NSLog(@"请求成功");
 //        NSLog(@"%@",responseObject);
         _orderModel = [[TVOrderModel alloc] initWithDictionary:responseObject error:nil];
-        [self.tableView reloadData];
+        [weakself.tableView reloadData];
         [hud hideAnimated:YES];
-        
+    
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"请求失败%@",error);
+        NSNotification *notification =[NSNotification notificationWithName:@"AFNetWorkingRequestError" object:nil userInfo:nil];
+        // 通过 通知中心 发送 通知
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
+        [hud hideAnimated:YES];
     }];
     
 }
@@ -82,16 +85,17 @@ NSString* listTitle;
 }
 
 - (void)addRefreshGif{
+//MJRefreshGifHeader
     MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
-    NSMutableArray *array = [[NSMutableArray alloc]init];
-    [array addObject:[UIImage imageNamed:@"timg"]];
-    [array addObject:[UIImage imageNamed:@"timg"]];
+    NSMutableArray *refreshHeaderArray = [[NSMutableArray alloc]init];
+    [refreshHeaderArray addObject:[UIImage imageNamed:@"飞碟"]];
+    [refreshHeaderArray addObject:[UIImage imageNamed:@"飞碟"]];
     // Set the ordinary state of animated images
-    [header setImages:array forState:MJRefreshStateIdle];
+    [header setImages:refreshHeaderArray forState:MJRefreshStateIdle];
     // Set the pulling state of animated images（Enter the status of refreshing as soon as loosen）
-    [header setImages:array forState:MJRefreshStatePulling];
+    [header setImages:refreshHeaderArray forState:MJRefreshStatePulling];
     // Set the refreshing state of animated images
-    [header setImages:array forState:MJRefreshStateRefreshing];
+    [header setImages:refreshHeaderArray forState:MJRefreshStateRefreshing];
     // Set header
     self.tableView.mj_header = header;
     // Hide the time
@@ -104,15 +108,39 @@ NSString* listTitle;
     [header setTitle:@"推荐..." forState:MJRefreshStateRefreshing];
     
     // Set font
-    header.stateLabel.font = [UIFont systemFontOfSize:13];
-    header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:13];
+    header.stateLabel.font = [UIFont systemFontOfSize:17];
+    header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:17];
     
     // Set textColor
     header.stateLabel.textColor = [UIColor lightGrayColor];
     header.lastUpdatedTimeLabel.textColor = [UIColor lightGrayColor];
+//MJRefreshAutoNormalFooter
+    MJRefreshAutoGifFooter *footer = [MJRefreshAutoGifFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    NSMutableArray *refreshFooterArray = [[NSMutableArray alloc]init];
+    [refreshFooterArray addObject:[UIImage imageNamed:@"加载"]];
+    [refreshFooterArray addObject:[UIImage imageNamed:@"加载"]];
+    // Set the refresh image
+    [footer setImages:refreshFooterArray forState:MJRefreshStateRefreshing];
+    [footer setTitle:@"" forState:MJRefreshStateIdle];
+    [footer setTitle:@"" forState:MJRefreshStatePulling];
+    [footer setTitle:@"正在载入..." forState:MJRefreshStateRefreshing];
+    footer.stateLabel.font = [UIFont systemFontOfSize:17];
+    footer.stateLabel.textColor = [UIColor lightGrayColor];
+    // Set footer
+    self.tableView.mj_footer = footer;
+    
+    
 }
 - (void)loadNewData{
     [self getData:listTitle];
     [self.tableView.mj_header endRefreshing];
 }
+- (void)loadMoreData{
+    [self.tableView.mj_footer endRefreshing];
+    // 创建通知
+    NSNotification *notification =[NSNotification notificationWithName:@"InfoNotification" object:nil userInfo:nil];
+    // 通过 通知中心 发送 通知
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
+}
+
 @end

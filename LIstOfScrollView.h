@@ -15,9 +15,10 @@
 @interface LIstOfScrollView : UIView<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong) UITableView *tableView;
 @property(nonatomic,strong) TVOrderModel *orderModel;
-@property(nonatomic,strong) NSDictionary *dataPara;
+@property(nonatomic,strong) NSMutableDictionary *dataPara;
 @property(nonatomic,strong) ShouYeTVCell* cellOne;
 @property(nonatomic,strong) ShouYeTVCellTwo *cellTwo;
 @property(nonatomic,strong) ShouYeTVCellOnlyText *cellOnlyText;
-- (id)init:(NSString *)title;
+- (id)initWithTitle:(NSString *)title;
+- (void)getData:(NSString *)title;
 @end

@@ -11,4 +11,5 @@
 
 @interface MeViewController : UIViewController
 @property(nonatomic,strong) MeView *meView;
+@property (copy, nonatomic)  UISwitch *nightModeSwitch;
 @end
