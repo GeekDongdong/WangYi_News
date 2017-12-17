@@ -11,14 +11,16 @@
 #import "TVOrderModel.h"
 
 @interface ShouYeViewController : UIViewController
-@property(nonatomic,strong)ShouYeView *shouYeView;
-@property(nonatomic,strong)UITableView *tableView;
-@property(nonatomic,strong)UIScrollView *scrollView;
-@property(nonatomic,strong)UIScrollView *listSV;
+@property(nonatomic,strong) ShouYeView *shouYeView;
+@property(nonatomic,strong) UITableView *tableView;
+@property(nonatomic,strong) UIScrollView *scrollView;
+@property(nonatomic,strong) UIScrollView *listSV;
 @property(nonatomic,strong) NSMutableDictionary *requestPara;
-@property(nonatomic,strong) NSArray *listOfScrollViewArray;
+@property(nonatomic,strong) NSArray *listButtonOfScrollViewArray;
+@property(nonatomic,strong) NSMutableArray *tableViewOfScrollViewArray;
 @property(nonatomic,strong) NSArray *titleOfListArray;
 @property(nonatomic,strong) NSMutableArray *loadChooseMutableArray;
-@property(nonatomic,assign)CGFloat historyY;
+@property(nonatomic,assign) CGFloat historyY;
 @property(nonatomic,strong) UILabel *requestErrorLabel;
+
 @end

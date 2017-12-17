@@ -7,22 +7,20 @@
 //
 #import "LIstOfScrollView.h"
 #import <AFNetworking.h>
-#import "MBProgressHUD.h"
 #import "MJRefreshGifHeader.h"
 #import "MJRefreshFooter.h"
 #import "MJRefreshAutoGifFooter.h"
 
-NSString* listTitle;
+
 @implementation LIstOfScrollView{
-    MBProgressHUD *hud;
+    NSString* listTitle;
 }
 - (id)initWithTitle:(NSString *)title{
     self = [super init];
     if (self) {
-        //_dataPara
-            _dataPara =  [NSMutableDictionary dictionaryWithObjectsAndKeys:@"49852",@"showapi_appid",@"81497a5a58de4543afdbb9aa42d32f2c",@"showapi_sign",@"1", @"page",title, @"channelName",@"10",@"maxResult",nil];
         //_tableView
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 375, 525) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-94) style:UITableViewStylePlain];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //        _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectZero];
@@ -30,36 +28,18 @@ NSString* listTitle;
         [_tableView registerClass:[ShouYeTVCell class] forCellReuseIdentifier:@"cellId1"];
         [_tableView registerClass:[ShouYeTVCellTwo class] forCellReuseIdentifier:@"cellId2"];
         [_tableView registerClass:[ShouYeTVCellOnlyText class] forCellReuseIdentifier:@"cellId3"];
-        [self getData:title];
+//        [self getData:title];
         listTitle = title;
         //MBProgressHUD
-        hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
-        hud.mode = MBProgressHUDModeIndeterminate;
-        hud.label.text = @"Loading";
+        [SVProgressHUD setBackgroundColor:[UIColor clearColor]];
+        [SVProgressHUD setForegroundColor:[UIColor lightGrayColor]];
+        [SVProgressHUD showWithStatus:@"加载中..."];
+        [SVProgressHUD setRingRadius:12.0];
+        [SVProgressHUD setRingThickness:4.0];
         //addRefreshGif
         [self addRefreshGif];
         }
     return self;
-}
-- (void)getData:(NSString *)title{
-    __weak LIstOfScrollView *weakself = self;
-    NSString *urlString = @"http://route.showapi.com/109-35";
-    AFHTTPSessionManager *manger = [AFHTTPSessionManager manager];
-    manger.requestSerializer= [AFHTTPRequestSerializer serializer];
-    [manger GET:urlString parameters:_dataPara progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        NSLog(@"请求成功");
-//        NSLog(@"%@",responseObject);
-        _orderModel = [[TVOrderModel alloc] initWithDictionary:responseObject error:nil];
-        [weakself.tableView reloadData];
-        [hud hideAnimated:YES];
-    
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSNotification *notification =[NSNotification notificationWithName:@"AFNetWorkingRequestError" object:nil userInfo:nil];
-        // 通过 通知中心 发送 通知
-        [[NSNotificationCenter defaultCenter] postNotification:notification];
-        [hud hideAnimated:YES];
-    }];
-    
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _orderModel.showapi_res_body.pagebean.contentlist.count ;
@@ -128,11 +108,10 @@ NSString* listTitle;
     footer.stateLabel.textColor = [UIColor lightGrayColor];
     // Set footer
     self.tableView.mj_footer = footer;
-    
-    
 }
 - (void)loadNewData{
-    [self getData:listTitle];
+    NSNotification *notification =[NSNotification notificationWithName:@"loadNewData" object:listTitle userInfo:nil];
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
     [self.tableView.mj_header endRefreshing];
 }
 - (void)loadMoreData{

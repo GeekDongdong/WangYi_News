@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface LinkViewController : UIViewController
-
+@property(nonatomic,strong) UIView *navView;
 @end

@@ -10,7 +10,7 @@
 #import "LinkViewController.h"
 
 @interface LinkViewController (){
-    UIView *navView;
+
 }
 
 @end
@@ -20,20 +20,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-   navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 64)];
-    navView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:navView];
+    _navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 64)];
+    _navView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_navView];
     
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     backButton.frame = CGRectMake(20, 30, 20, 20);
     [backButton setImage:[UIImage imageNamed:@"返回"] forState:UIControlStateNormal];
-    [navView addSubview:backButton];
+    [_navView addSubview:backButton];
     [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *qiTaButton = [UIButton buttonWithType:UIButtonTypeCustom];
     qiTaButton.frame = CGRectMake(Width-35, 28, 25, 25);
     [qiTaButton setImage:[UIImage imageNamed:@"其他"] forState:UIControlStateNormal];
-    [navView addSubview:qiTaButton];
+    [_navView addSubview:qiTaButton];
 
 }
 - (void)back{
@@ -42,25 +42,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applyTheme:) name:@"switchDayOrNightMode" object:nil];
-}
-- (void)viewWillDisappear:(BOOL)animated
-{
-     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"switchDayOrNightMode" object:nil];
-}
-//通知事件applyTheme
-- (void)applyTheme:(NSNotification *)noti {
-    NSString *info = [noti object];
-    if ([info intValue]) {
-        self.view.backgroundColor = [UIColor darkGrayColor];
-        navView.backgroundColor = [UIColor darkGrayColor];
-    }else{
-        self.view.backgroundColor = [UIColor whiteColor];
-        navView.backgroundColor = [UIColor darkGrayColor];
-    }
 }
 /*
 #pragma mark - Navigation
