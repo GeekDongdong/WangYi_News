@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04014B1B1FAFECED00EC3F32 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04014B1A1FAFECED00EC3F32 /* SystemConfiguration.framework */; };
 		04014B331FAFEFE900EC3F32 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04014B1D1FAFEFE900EC3F32 /* Info.plist */; };
 		04014B341FAFEFE900EC3F32 /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04014B201FAFEFE900EC3F32 /* JSONModel.m */; };
 		04014B351FAFEFE900EC3F32 /* JSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 04014B221FAFEFE900EC3F32 /* JSONModelClassProperty.m */; };
@@ -95,11 +94,19 @@
 		046C92B41FA5C77900F61C73 /* ShouYeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046C92B31FA5C77900F61C73 /* ShouYeViewController.m */; };
 		046C92BD1FA5C7A600F61C73 /* WeiZiXunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046C92BC1FA5C7A600F61C73 /* WeiZiXunViewController.m */; };
 		046C92C01FA5C7B000F61C73 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046C92BF1FA5C7B000F61C73 /* MeViewController.m */; };
+		04834F4B1FEBC2A600BF9B98 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 04834F3F1FEBC2A600BF9B98 /* FMDatabase.m */; };
+		04834F4C1FEBC2A600BF9B98 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 04834F421FEBC2A600BF9B98 /* FMResultSet.m */; };
+		04834F4D1FEBC2A600BF9B98 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 04834F451FEBC2A600BF9B98 /* FMDatabaseQueue.m */; };
+		04834F4E1FEBC2A600BF9B98 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 04834F471FEBC2A600BF9B98 /* FMDatabaseAdditions.m */; };
+		04834F4F1FEBC2A600BF9B98 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 04834F491FEBC2A600BF9B98 /* FMDatabasePool.m */; };
+		04834F501FEBC2A600BF9B98 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04834F4A1FEBC2A600BF9B98 /* Info.plist */; };
+		04834F511FEBC2C000BF9B98 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04834F0F1FEBBCFF00BF9B98 /* libsqlite3.0.tbd */; };
 		04914A761FA5F4AE00E9D346 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04914A751FA5F4AE00E9D346 /* TabBarController.m */; };
 		04914A7D1FA5FA5400E9D346 /* ShouYeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04914A7C1FA5FA5400E9D346 /* ShouYeView.m */; };
 		04914A861FA604AD00E9D346 /* MeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04914A851FA604AD00E9D346 /* MeView.m */; };
 		04B24F8D1FCA8FB8004FAFA3 /* HighTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B24F8C1FCA8FB8004FAFA3 /* HighTabBar.m */; };
 		04DA003C1FC946B300E59A8C /* LinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DA003B1FC946B300E59A8C /* LinkViewController.m */; };
+		04E2366F1FE697E7005A706C /* ShouYeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046C92B31FA5C77900F61C73 /* ShouYeViewController.m */; };
 		04F538371FBDC0FA004162FF /* ShouYeTVCellOnlyText.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F538361FBDC0FA004162FF /* ShouYeTVCellOnlyText.m */; };
 		04F832921FBC577600D0635F /* ShouYeTVCellTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F832911FBC577600D0635F /* ShouYeTVCellTwo.m */; };
 		04FFA3ED1FAC701E003384CA /* ShouYeTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FFA3EC1FAC701E003384CA /* ShouYeTVCell.m */; };
@@ -305,6 +312,19 @@
 		046C92BC1FA5C7A600F61C73 /* WeiZiXunViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiZiXunViewController.m; sourceTree = "<group>"; };
 		046C92BE1FA5C7B000F61C73 /* MeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeViewController.h; sourceTree = "<group>"; };
 		046C92BF1FA5C7B000F61C73 /* MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
+		04834F0F1FEBBCFF00BF9B98 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		04834F3F1FEBC2A600BF9B98 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		04834F401FEBC2A600BF9B98 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		04834F411FEBC2A600BF9B98 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		04834F421FEBC2A600BF9B98 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		04834F431FEBC2A600BF9B98 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		04834F441FEBC2A600BF9B98 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		04834F451FEBC2A600BF9B98 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		04834F461FEBC2A600BF9B98 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		04834F471FEBC2A600BF9B98 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		04834F481FEBC2A600BF9B98 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		04834F491FEBC2A600BF9B98 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		04834F4A1FEBC2A600BF9B98 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04914A741FA5F4AE00E9D346 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		04914A751FA5F4AE00E9D346 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		04914A7B1FA5FA5400E9D346 /* ShouYeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShouYeView.h; sourceTree = "<group>"; };
@@ -331,7 +351,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04014B1B1FAFECED00EC3F32 /* SystemConfiguration.framework in Frameworks */,
+				04834F511FEBC2C000BF9B98 /* libsqlite3.0.tbd in Frameworks */,
 				54A72E818F943EFD517CD5F5 /* libPods-WangYi_News.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -592,6 +612,7 @@
 		046C92441FA5B81600F61C73 = {
 			isa = PBXGroup;
 			children = (
+				04834F3E1FEBC28500BF9B98 /* fmdb */,
 				043199DD1FDABB9200D40C42 /* SVProgressHUD */,
 				0429CF561FBB1E4700D610EF /* SDWebImage */,
 				041CF9A01FB702FB002DAC79 /* MJRefresh */,
@@ -731,6 +752,96 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		04834F111FEBBD1300BF9B98 /* fmdb-master */ = {
+			isa = PBXGroup;
+			children = (
+				04834F121FEBBD1300BF9B98 /* src */,
+				04834F181FEBBD1300BF9B98 /* Tests */,
+			);
+			path = "fmdb-master";
+			sourceTree = "<group>";
+		};
+		04834F121FEBBD1300BF9B98 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				04834F131FEBBD1300BF9B98 /* extra */,
+				04834F161FEBBD1300BF9B98 /* fmdb */,
+				04834F171FEBBD1300BF9B98 /* sample */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		04834F131FEBBD1300BF9B98 /* extra */ = {
+			isa = PBXGroup;
+			children = (
+				04834F141FEBBD1300BF9B98 /* fts3 */,
+				04834F151FEBBD1300BF9B98 /* InMemoryOnDiskIO */,
+			);
+			path = extra;
+			sourceTree = "<group>";
+		};
+		04834F141FEBBD1300BF9B98 /* fts3 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = fts3;
+			sourceTree = "<group>";
+		};
+		04834F151FEBBD1300BF9B98 /* InMemoryOnDiskIO */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = InMemoryOnDiskIO;
+			sourceTree = "<group>";
+		};
+		04834F161FEBBD1300BF9B98 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = fmdb;
+			sourceTree = "<group>";
+		};
+		04834F171FEBBD1300BF9B98 /* sample */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = sample;
+			sourceTree = "<group>";
+		};
+		04834F181FEBBD1300BF9B98 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				04834F191FEBBD1300BF9B98 /* Schemes */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		04834F191FEBBD1300BF9B98 /* Schemes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Schemes;
+			sourceTree = "<group>";
+		};
+		04834F3E1FEBC28500BF9B98 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				04834F3F1FEBC2A600BF9B98 /* FMDatabase.m */,
+				04834F401FEBC2A600BF9B98 /* FMResultSet.h */,
+				04834F411FEBC2A600BF9B98 /* FMDatabase.h */,
+				04834F421FEBC2A600BF9B98 /* FMResultSet.m */,
+				04834F431FEBC2A600BF9B98 /* FMDatabaseQueue.h */,
+				04834F441FEBC2A600BF9B98 /* FMDB.h */,
+				04834F451FEBC2A600BF9B98 /* FMDatabaseQueue.m */,
+				04834F461FEBC2A600BF9B98 /* FMDatabaseAdditions.h */,
+				04834F471FEBC2A600BF9B98 /* FMDatabaseAdditions.m */,
+				04834F481FEBC2A600BF9B98 /* FMDatabasePool.h */,
+				04834F491FEBC2A600BF9B98 /* FMDatabasePool.m */,
+				04834F4A1FEBC2A600BF9B98 /* Info.plist */,
+			);
+			name = fmdb;
+			sourceTree = "<group>";
+		};
 		04914A771FA5F9D100E9D346 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -809,6 +920,8 @@
 		78514CFE01CFE26E948B2D8B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04834F111FEBBD1300BF9B98 /* fmdb-master */,
+				04834F0F1FEBBCFF00BF9B98 /* libsqlite3.0.tbd */,
 				04014B1A1FAFECED00EC3F32 /* SystemConfiguration.framework */,
 				5A0A6C4A882AFD74F99A48F3 /* libPods-WangYi_News.a */,
 			);
@@ -924,6 +1037,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04834F501FEBC2A600BF9B98 /* Info.plist in Resources */,
 				043199EA1FDABB9200D40C42 /* SVProgressHUD.bundle in Resources */,
 				04014B331FAFEFE900EC3F32 /* Info.plist in Resources */,
 				04014B431FB0701000EC3F32 /* Images.xcassets in Resources */,
@@ -1036,6 +1150,7 @@
 				046C92B41FA5C77900F61C73 /* ShouYeViewController.m in Sources */,
 				046C92A51FA5C64C00F61C73 /* NSArray+MASAdditions.m in Sources */,
 				041CF9D21FB702FB002DAC79 /* MJRefreshFooter.m in Sources */,
+				04834F4C1FEBC2A600BF9B98 /* FMResultSet.m in Sources */,
 				04FFA3ED1FAC701E003384CA /* ShouYeTVCell.m in Sources */,
 				04014B411FB009BA00EC3F32 /* TVOrderModel.m in Sources */,
 				0429CFA01FBB1E4700D610EF /* SDWebImageWebPCoder.m in Sources */,
@@ -1064,6 +1179,7 @@
 				041CF9D91FB702FB002DAC79 /* MJRefreshBackStateFooter.m in Sources */,
 				0429CF9D1FBB1E4700D610EF /* SDWebImageImageIOCoder.m in Sources */,
 				0429CF981FBB1E4700D610EF /* SDWebImageCompat.m in Sources */,
+				04834F4E1FEBC2A600BF9B98 /* FMDatabaseAdditions.m in Sources */,
 				046C92521FA5B81600F61C73 /* main.m in Sources */,
 				046C92BD1FA5C7A600F61C73 /* WeiZiXunViewController.m in Sources */,
 				0429CF9F1FBB1E4700D610EF /* SDWebImagePrefetcher.m in Sources */,
@@ -1071,7 +1187,9 @@
 				041CF9D51FB702FB002DAC79 /* MJRefreshAutoNormalFooter.m in Sources */,
 				0429CF951FBB1E4700D610EF /* SDWebImageCoder.m in Sources */,
 				046C92A81FA5C64C00F61C73 /* ViewController+MASAdditions.m in Sources */,
+				04834F4F1FEBC2A600BF9B98 /* FMDatabasePool.m in Sources */,
 				046C92A71FA5C64C00F61C73 /* View+MASAdditions.m in Sources */,
+				04834F4B1FEBC2A600BF9B98 /* FMDatabase.m in Sources */,
 				04014B351FAFEFE900EC3F32 /* JSONModelClassProperty.m in Sources */,
 				0429CFA41FBB1E4700D610EF /* UIImage+MultiFormat.m in Sources */,
 				0429CF9E1FBB1E4700D610EF /* SDWebImageManager.m in Sources */,
@@ -1088,6 +1206,7 @@
 				04014B341FAFEFE900EC3F32 /* JSONModel.m in Sources */,
 				04F832921FBC577600D0635F /* ShouYeTVCellTwo.m in Sources */,
 				043199EC1FDABB9200D40C42 /* SVRadialGradientLayer.m in Sources */,
+				04834F4D1FEBC2A600BF9B98 /* FMDatabaseQueue.m in Sources */,
 				041CF9D71FB702FB002DAC79 /* MJRefreshBackGifFooter.m in Sources */,
 				0429CF971FBB1E4700D610EF /* SDWebImageCodersManager.m in Sources */,
 				046C92A01FA5C64C00F61C73 /* MASConstraint.m in Sources */,
@@ -1108,6 +1227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				046C92761FA5B81600F61C73 /* WangYi_NewsUITests.m in Sources */,
+				04E2366F1FE697E7005A706C /* ShouYeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

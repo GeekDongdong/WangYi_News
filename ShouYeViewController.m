@@ -19,8 +19,9 @@
 #import "LinkViewController.h"
 #import <WebKit/WebKit.h>
 #import "DataManager.h"
+#import "FMDatabase.h"
 
-@interface ShouYeViewController ()<UITableViewDelegate,UINavigationControllerDelegate>{
+@interface ShouYeViewController ()<UITableViewDelegate,UINavigationControllerDelegate,UIScrollViewDelegate>{
     LIstOfScrollView *agencyListOfScrollView;
     UIButton *keyButton;
     DataManager *dataManger;
@@ -75,7 +76,14 @@
     for (int i=0; i<15; i++) {
        [_tableViewOfScrollViewArray addObject:listOfScrollView];
     }
-   }
+    //FMDB
+    FMDatabase *db = [FMDatabase databaseWithPath:@"/Desktop/tmp.db"];
+    [db executeUpdate:@"wsswsxd"];
+    FMResultSet *s = [db executeQuery:@"SELECT * FROM myTable"];
+    while ([s next]) {
+        NSLog(@"%@",s);
+    }
+}
 - (void)InfoNotificationAction:(NSNotification *)notification{
     maxResult+=10;
     pageValueString = [[NSString alloc]initWithFormat:@"%d",maxResult];
@@ -344,12 +352,13 @@
     NSURLRequest* request = [NSURLRequest requestWithURL:url];//创建NSURLRequest
     [webView loadRequest:request];//加载
     [self presentViewController:linkVC animated:YES completion:nil];
+
 }
 
 //tabbar动态隐藏
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
-    
+    NSLog(@"````%f",targetContentOffset->y);
     if (_historyY+20<targetContentOffset->y)
     {
         [self setTabBarHidden:YES];
@@ -360,6 +369,7 @@
     }
     _historyY=targetContentOffset->y;
 }
+
 //设置tabBar
 - (void)setTabBarHidden:(BOOL)hidden
 {

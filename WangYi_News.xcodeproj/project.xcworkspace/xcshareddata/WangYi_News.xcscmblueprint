@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "23C009259050902488E428930BE03D7E3EA03674",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "4D223FBB55000559608332D00A63F98EF1D85096" : 9223372036854775807,
+    "23C009259050902488E428930BE03D7E3EA03674" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "F2AFF8D2-0691-41D6-98CF-E6EEA0B09F6D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "4D223FBB55000559608332D00A63F98EF1D85096" : "Think%20Caculator\/",
+    "23C009259050902488E428930BE03D7E3EA03674" : "WangYi_News\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "WangYi_News",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "WangYi_News.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/GeekDongdong\/WangYi_News.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "23C009259050902488E428930BE03D7E3EA03674"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/GeekDongdong\/Count.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4D223FBB55000559608332D00A63F98EF1D85096"
+    }
+  ]
+}
