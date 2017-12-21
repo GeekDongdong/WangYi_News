@@ -19,7 +19,7 @@
 #import "LinkViewController.h"
 #import <WebKit/WebKit.h>
 #import "DataManager.h"
-#import "FMDatabase.h"
+#import "FMDB.h"
 
 @interface ShouYeViewController ()<UITableViewDelegate,UINavigationControllerDelegate,UIScrollViewDelegate>{
     LIstOfScrollView *agencyListOfScrollView;

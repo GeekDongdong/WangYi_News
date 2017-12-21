@@ -1,0 +1,23 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "23C009259050902488E428930BE03D7E3EA03674",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "23C009259050902488E428930BE03D7E3EA03674" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "A0B97E54-305D-4800-90B4-EEBE1ECBDA56",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "23C009259050902488E428930BE03D7E3EA03674" : "WangYi_News\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "WangYi_News",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "WangYi_News.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/GeekDongdong\/WangYi_News.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "23C009259050902488E428930BE03D7E3EA03674"
+    }
+  ]
+}
