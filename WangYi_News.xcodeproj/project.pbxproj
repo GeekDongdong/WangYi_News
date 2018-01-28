@@ -101,6 +101,8 @@
 		04834F4F1FEBC2A600BF9B98 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 04834F491FEBC2A600BF9B98 /* FMDatabasePool.m */; };
 		04834F501FEBC2A600BF9B98 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04834F4A1FEBC2A600BF9B98 /* Info.plist */; };
 		04834F511FEBC2C000BF9B98 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04834F0F1FEBBCFF00BF9B98 /* libsqlite3.0.tbd */; };
+		04834F551FEBE40700BF9B98 /* DataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 04834F541FEBE40700BF9B98 /* DataBase.m */; };
+		04834F591FEBE44A00BF9B98 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 04834F581FEBE44A00BF9B98 /* News.m */; };
 		04914A761FA5F4AE00E9D346 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04914A751FA5F4AE00E9D346 /* TabBarController.m */; };
 		04914A7D1FA5FA5400E9D346 /* ShouYeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04914A7C1FA5FA5400E9D346 /* ShouYeView.m */; };
 		04914A861FA604AD00E9D346 /* MeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04914A851FA604AD00E9D346 /* MeView.m */; };
@@ -325,6 +327,10 @@
 		04834F481FEBC2A600BF9B98 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
 		04834F491FEBC2A600BF9B98 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
 		04834F4A1FEBC2A600BF9B98 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04834F531FEBE40700BF9B98 /* DataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBase.h; sourceTree = "<group>"; };
+		04834F541FEBE40700BF9B98 /* DataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBase.m; sourceTree = "<group>"; };
+		04834F571FEBE44A00BF9B98 /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
+		04834F581FEBE44A00BF9B98 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		04914A741FA5F4AE00E9D346 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		04914A751FA5F4AE00E9D346 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		04914A7B1FA5FA5400E9D346 /* ShouYeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShouYeView.h; sourceTree = "<group>"; };
@@ -842,6 +848,17 @@
 			name = fmdb;
 			sourceTree = "<group>";
 		};
+		04834F561FEBE42900BF9B98 /* FMDataBase */ = {
+			isa = PBXGroup;
+			children = (
+				04834F531FEBE40700BF9B98 /* DataBase.h */,
+				04834F541FEBE40700BF9B98 /* DataBase.m */,
+				04834F571FEBE44A00BF9B98 /* News.h */,
+				04834F581FEBE44A00BF9B98 /* News.m */,
+			);
+			name = FMDataBase;
+			sourceTree = "<group>";
+		};
 		04914A771FA5F9D100E9D346 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -859,6 +876,7 @@
 				04014B401FB009BA00EC3F32 /* TVOrderModel.m */,
 				043199DA1FDA7B8700D40C42 /* DataManager.h */,
 				043199DB1FDA7B8700D40C42 /* DataManager.m */,
+				04834F561FEBE42900BF9B98 /* FMDataBase */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1126,6 +1144,7 @@
 				046C92C01FA5C7B000F61C73 /* MeViewController.m in Sources */,
 				0404AE731FC2DFA4002FA8A7 /* LIstOfScrollView.m in Sources */,
 				041CF9E01FB702FB002DAC79 /* UIScrollView+MJExtension.m in Sources */,
+				04834F551FEBE40700BF9B98 /* DataBase.m in Sources */,
 				041CF9DB1FB702FB002DAC79 /* MJRefreshNormalHeader.m in Sources */,
 				041CF9D61FB702FB002DAC79 /* MJRefreshAutoStateFooter.m in Sources */,
 				04014B361FAFEFE900EC3F32 /* JSONModelError.m in Sources */,
@@ -1151,6 +1170,7 @@
 				046C92A51FA5C64C00F61C73 /* NSArray+MASAdditions.m in Sources */,
 				041CF9D21FB702FB002DAC79 /* MJRefreshFooter.m in Sources */,
 				04834F4C1FEBC2A600BF9B98 /* FMResultSet.m in Sources */,
+				04834F591FEBE44A00BF9B98 /* News.m in Sources */,
 				04FFA3ED1FAC701E003384CA /* ShouYeTVCell.m in Sources */,
 				04014B411FB009BA00EC3F32 /* TVOrderModel.m in Sources */,
 				0429CFA01FBB1E4700D610EF /* SDWebImageWebPCoder.m in Sources */,

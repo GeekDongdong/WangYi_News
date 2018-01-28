@@ -66,7 +66,7 @@
     }else if(seconds<24*60){
         shiCha = [NSString stringWithFormat:@"%ld小时前",seconds/60];
     }else{
-        shiCha = [NSString stringWithFormat:@"%ld天前",seconds/3600];
+        shiCha = [NSString stringWithFormat:@"%ld天前",seconds/1440];
     }
     _timeLabel.text = shiCha;
     //添加来源

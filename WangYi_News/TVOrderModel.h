@@ -29,7 +29,7 @@
 
 @interface TVpagebeanModel :JSONModel
 @property (copy, nonatomic) NSNumber<Optional> *allNum;
-@property (strong, nonatomic) NSArray<TVcontentlistModel,Optional> *contentlist;
+@property (strong, nonatomic) NSMutableArray<TVcontentlistModel,Optional> *contentlist;
 @end
 
 @interface  TVbodyModel: JSONModel

@@ -19,7 +19,7 @@
 #import "LinkViewController.h"
 #import <WebKit/WebKit.h>
 #import "DataManager.h"
-#import "FMDB.h"
+#import "DataBase.h"
 
 @interface ShouYeViewController ()<UITableViewDelegate,UINavigationControllerDelegate,UIScrollViewDelegate>{
     LIstOfScrollView *agencyListOfScrollView;
@@ -44,8 +44,6 @@
    self.navigationController.delegate = self;
     _shouYeView = [[ShouYeView alloc]init];
     [_shouYeView.titleButton addTarget:self action:@selector(backToMain) forControlEvents:Touch];
-    [_shouYeView.searchButton addTarget:self action:@selector(search) forControlEvents:Touch];
-    [_shouYeView.zhiBoButton addTarget:self action:@selector(zhiBo) forControlEvents:Touch];
     [self.navigationController.navigationBar addSubview:_shouYeView.titleButton];
     [self.navigationController.navigationBar addSubview:_shouYeView.searchButton];
     [self.navigationController.navigationBar addSubview:_shouYeView.zhiBoButton];
@@ -62,9 +60,10 @@
         agencyListOfScrollView.orderModel = model;
         agencyListOfScrollView.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         [SVProgressHUD dismiss];
+        //数据库存储
+        [[DataBase sharedDataBase]addNews:agencyListOfScrollView.orderModel];
         [agencyListOfScrollView.tableView reloadData];
     } faliure:^{
-        
     } channelName:@"国内焦点" maxResult:@"10"];
     listOfScrollView.tag = 0;
     agencyListOfScrollView = [[LIstOfScrollView alloc]init];
@@ -76,14 +75,9 @@
     for (int i=0; i<15; i++) {
        [_tableViewOfScrollViewArray addObject:listOfScrollView];
     }
-    //FMDB
-    FMDatabase *db = [FMDatabase databaseWithPath:@"/Desktop/tmp.db"];
-    [db executeUpdate:@"wsswsxd"];
-    FMResultSet *s = [db executeQuery:@"SELECT * FROM myTable"];
-    while ([s next]) {
-        NSLog(@"%@",s);
-    }
+
 }
+
 - (void)InfoNotificationAction:(NSNotification *)notification{
     maxResult+=10;
     pageValueString = [[NSString alloc]initWithFormat:@"%d",maxResult];
@@ -98,14 +92,19 @@
 }
 //通知事件AFNetWorkingRequestError
 - (void)AFNetWorkingRequestError{
-    [agencyListOfScrollView.tableView removeFromSuperview];
-    if (_requestErrorLabel.tag != -1) {
-        _requestErrorLabel = [[UILabel alloc]initWithFrame:CGRectMake(130, Height/2-30, 150, 30)];
-        _requestErrorLabel.text = @"暂时没网了...";
-        _requestErrorLabel.tag = -1;
-        _requestErrorLabel.font = [UIFont systemFontOfSize:20];
-        [self.view addSubview:_requestErrorLabel];
-    }
+    TVOrderModel *orderModel = [[TVOrderModel alloc]init];
+    orderModel.showapi_res_body.pagebean.contentlist = [[[DataBase sharedDataBase]getAllPerson]copy];
+    orderModel.showapi_res_body.pagebean.allNum = [NSNumber numberWithInteger:[[DataBase sharedDataBase]getAllPerson].count];
+    agencyListOfScrollView.orderModel = orderModel;
+    [agencyListOfScrollView.tableView reloadData];
+    NSLog(@"error!");
+//    if (_requestErrorLabel.tag != -1) {
+//        _requestErrorLabel = [[UILabel alloc]initWithFrame:CGRectMake(130, Height/2-30, 150, 30)];
+//        _requestErrorLabel.text = @"暂时没网了...";
+//        _requestErrorLabel.tag = -1;
+//        _requestErrorLabel.font = [UIFont systemFontOfSize:20];
+//        [self.view addSubview:_requestErrorLabel];
+//    }
 
 }
 //通知事件applyTheme
@@ -159,57 +158,32 @@
     _listSV.contentSize=CGSizeMake(Width*3, 30);
     [_listSV addSubview:_shouYeView.touTiaoOfListButton];
     _shouYeView.touTiaoOfListButton.selected = YES;
-    [_shouYeView.touTiaoOfListButton addTarget:self action:@selector(listTask:) forControlEvents:Touch];
-    keyButton = [[UIButton alloc]init];
-    keyButton = _shouYeView.touTiaoOfListButton;
-    [_shouYeView.shiPinOfListButton addTarget:self action:@selector(listTask:) forControlEvents:Touch];
-    [_shouYeView.jianKangOfListButton addTarget:self action:@selector(listTask:) forControlEvents:Touch];
-    [_shouYeView.yuLeOfListButton addTarget:self action:@selector(listTask:) forControlEvents:Touch];
-    [_shouYeView.tiYuOfListButton addTarget:self action:@selector(listTask:) forControlEvents:Touch];
-    [_shouYeView.duanZiOfListButton addTarget:self action:@selector(listTask:) forControlEvents:Touch];
-    [_shouYeView.caiJingOfListButton addTarget:self action:@selector(listTask:) forControlEvents:Touch];
-    [_shouYeView.keJiOfListButton addTarget:self action:@selector(listTask:) forControlEvents:Touch];
-    [_shouYeView.qiCheOfListButton addTarget:self action:@selector(listTask:) forControlEvents:Touch];
-    [_shouYeView.sheHuiOfListButton addTarget:self action:@selector(listTask:) forControlEvents:Touch];
-    [_shouYeView.junShiOfListButton addTarget:self action:@selector(listTask:) forControlEvents:Touch];
-    [_shouYeView.NBAOfListButton addTarget:self action:@selector(listTask:) forControlEvents:Touch];
-    [_shouYeView.fangChanOfListButton addTarget:self action:@selector(listTask:) forControlEvents:Touch];
-    [_shouYeView.guPiaoOfListButton addTarget:self action:@selector(listTask:) forControlEvents:Touch];
-    [_shouYeView.jiaJuOfListButton addTarget:self action:@selector(listTask:) forControlEvents:Touch];
-    //添加上去
-    [_listSV addSubview:_shouYeView.shiPinOfListButton];
-    [_listSV addSubview:_shouYeView.jianKangOfListButton];
-    [_listSV addSubview:_shouYeView.yuLeOfListButton];
-    [_listSV addSubview:_shouYeView.tiYuOfListButton];
-    [_listSV addSubview:_shouYeView.duanZiOfListButton];
-    [_listSV addSubview:_shouYeView.caiJingOfListButton];
-    [_listSV addSubview:_shouYeView.keJiOfListButton];
-    [_listSV addSubview:_shouYeView.qiCheOfListButton];
-    [_listSV addSubview:_shouYeView.sheHuiOfListButton];
-    [_listSV addSubview:_shouYeView.junShiOfListButton];
-    [_listSV addSubview:_shouYeView.NBAOfListButton];
-    [_listSV addSubview:_shouYeView.fangChanOfListButton];
-    [_listSV addSubview:_shouYeView.guPiaoOfListButton];
-    [_listSV addSubview:_shouYeView.jiaJuOfListButton];
     //初始化字典
     _listButtonOfScrollViewArray = [[NSArray alloc]initWithObjects:
-        _shouYeView.touTiaoOfListButton,
-        _shouYeView.shiPinOfListButton,
-        _shouYeView.jianKangOfListButton,
-        _shouYeView.yuLeOfListButton,
-        _shouYeView.tiYuOfListButton,
-        _shouYeView.duanZiOfListButton,
-        _shouYeView.caiJingOfListButton,
-        _shouYeView.keJiOfListButton,
-        _shouYeView.qiCheOfListButton,
-        _shouYeView.sheHuiOfListButton,
-        _shouYeView.junShiOfListButton,
-        _shouYeView.NBAOfListButton,
-        _shouYeView.fangChanOfListButton,
-        _shouYeView.guPiaoOfListButton,
-        _shouYeView.jiaJuOfListButton,
-                              nil];
-     //初始化_loadChooseArray
+                                    _shouYeView.touTiaoOfListButton,
+                                    _shouYeView.shiPinOfListButton,
+                                    _shouYeView.jianKangOfListButton,
+                                    _shouYeView.yuLeOfListButton,
+                                    _shouYeView.tiYuOfListButton,
+                                    _shouYeView.duanZiOfListButton,
+                                    _shouYeView.caiJingOfListButton,
+                                    _shouYeView.keJiOfListButton,
+                                    _shouYeView.qiCheOfListButton,
+                                    _shouYeView.sheHuiOfListButton,
+                                    _shouYeView.junShiOfListButton,
+                                    _shouYeView.NBAOfListButton,
+                                    _shouYeView.fangChanOfListButton,
+                                    _shouYeView.guPiaoOfListButton,
+                                    _shouYeView.jiaJuOfListButton,
+                                    nil];
+    for (int i=0; i<15; i++) {
+        //添加点击事件
+        [[_listButtonOfScrollViewArray objectAtIndex:i]addTarget:self action:@selector(listTask:) forControlEvents:Touch];
+        //添加上去
+        [_listSV addSubview:[_listButtonOfScrollViewArray objectAtIndex:i]];
+    }
+    
+    //初始化_loadChooseArray
     _loadChooseMutableArray = [[NSMutableArray alloc]initWithObjects:@"1",@"0", @"0", @"0", @"0", @"0", @"0", @"0", @"0", @"0", @"0", @"0", @"0", @"0", @"0", nil];
     [self.view addSubview:_listSV];
     //初始化_tableViewOfScrollViewArray
@@ -316,21 +290,10 @@
     [agencyListOfScrollView.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     [self setTabBarHidden:NO];
 }
-- (void)search{
-    NSLog(@"");
-}
-- (void)zhiBo{
-    NSLog(@"");
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     TVcontentlistModel *tvModel = [[TVcontentlistModel alloc]init];
     tvModel = agencyListOfScrollView.orderModel.showapi_res_body.pagebean.contentlist[indexPath.row];
-//    NSLog(@"--%@",tvModel);
+    //    NSLog(@"--%@",tvModel);
     if (tvModel.imageurls.count<3 && tvModel.imageurls.count!=0) {
         return [ShouYeTVCell setIntroductionText:agencyListOfScrollView.cellOne];
     }else if (tvModel.imageurls.count==0){
@@ -346,19 +309,18 @@
     tvModel = agencyListOfScrollView.orderModel.showapi_res_body.pagebean.contentlist[indexPath.row];
     LinkViewController *linkVC = [[LinkViewController alloc]init];
     WKWebView* webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 64, Width, Height-64)];
-//    webView.scalesPageToFit = YES;//自动对页面进行缩放以适应屏幕
+    //    webView.scalesPageToFit = YES;//自动对页面进行缩放以适应屏幕
     [linkVC.view addSubview:webView];
     NSURL* url = [NSURL URLWithString:tvModel.link];//创建URL
     NSURLRequest* request = [NSURLRequest requestWithURL:url];//创建NSURLRequest
     [webView loadRequest:request];//加载
     [self presentViewController:linkVC animated:YES completion:nil];
-
+    
 }
 
 //tabbar动态隐藏
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
-    NSLog(@"````%f",targetContentOffset->y);
     if (_historyY+20<targetContentOffset->y)
     {
         [self setTabBarHidden:YES];
@@ -373,23 +335,12 @@
 //设置tabBar
 - (void)setTabBarHidden:(BOOL)hidden
 {
-//    UIView *tab = self.tabBarController.view;
-    CGRect  tabRect=self.tabBarController.tabBar.frame;
-//    if ([tab.subviews count] < 2) {
-//        return;
-//    }
     
-//    UIView *view;
-//    if ([[tab.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]]) {
-//        view = [tab.subviews objectAtIndex:1];
-//    } else {
-//        view = [tab.subviews objectAtIndex:0];
-//    }
+    CGRect  tabRect=self.tabBarController.tabBar.frame;
+    
     if (hidden) {
-//        view.frame = tab.bounds;
         tabRect.origin.y=[[UIScreen mainScreen] bounds].size.height+self.tabBarController.tabBar.frame.size.height;
     } else {
-//        view.frame = CGRectMake(tab.bounds.origin.x, tab.bounds.origin.y, tab.bounds.size.width, tab.bounds.size.height);
         tabRect.origin.y=[[UIScreen mainScreen] bounds].size.height-self.tabBarController.tabBar.frame.size.height;
     }
     
@@ -398,5 +349,10 @@
     }completion:^(BOOL finished) {
         
     }];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 @end

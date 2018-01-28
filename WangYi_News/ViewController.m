@@ -18,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //壁纸
+    NSString *str = [[NSArray array] componentsJoinedByString:@"ZD"];
+    NSArray *arrau = [str componentsSeparatedByString:@"ZD"];
     UIImageView *wallpaperIV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"wallpaper"]];
     wallpaperIV.frame = [UIScreen mainScreen].bounds;
     [self.view addSubview:wallpaperIV];

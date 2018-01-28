@@ -10,7 +10,7 @@
 #import "MJRefreshGifHeader.h"
 #import "MJRefreshFooter.h"
 #import "MJRefreshAutoGifFooter.h"
-
+#import "DataBase.h"
 
 @implementation LIstOfScrollView{
     NSString* listTitle;
@@ -48,7 +48,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TVcontentlistModel *tvModel = [[TVcontentlistModel alloc]init];
     tvModel = _orderModel.showapi_res_body.pagebean.contentlist[indexPath.row];
-    if (tvModel.imageurls.count<3&&tvModel.imageurls.count!=0) {
+
+    
+    if (tvModel.imageurls.count<3 && tvModel.imageurls.count!=0) {
         _cellOne = [tableView dequeueReusableCellWithIdentifier:@"cellId1" forIndexPath:indexPath];
         [_cellOne updateData:tvModel];
         return _cellOne;

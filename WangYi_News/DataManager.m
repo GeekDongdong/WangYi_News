@@ -17,15 +17,14 @@
     AFHTTPSessionManager *manger = [AFHTTPSessionManager manager];
     manger.requestSerializer= [AFHTTPRequestSerializer serializer];
     [manger GET:urlString parameters:paraDictionary progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        //        NSLog(@"请求成功");
-        //        NSLog(@"%@",responseObject);
         _orderModel = [[TVOrderModel alloc] initWithDictionary:responseObject error:nil];
-//        NSLog(@"%@",_orderModel.showapi_res_body.pagebean.contentlist[0]);
+
         sucessBlock(_orderModel);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSNotification *notification =[NSNotification notificationWithName:@"AFNetWorkingRequestError" object:nil userInfo:nil];
         // 通过 通知中心 发送 通知
         [[NSNotificationCenter defaultCenter] postNotification:notification];
+        
     }];
 
 }
