@@ -64,6 +64,14 @@
         [[DataBase sharedDataBase]addNews:agencyListOfScrollView.orderModel];
         [agencyListOfScrollView.tableView reloadData];
     } faliure:^{
+        TVOrderModel *orderModel = [[TVOrderModel alloc]init];
+        //从数据库取数据
+        orderModel.showapi_res_body.pagebean.contentlist = [[[DataBase sharedDataBase]getAllPerson] mutableCopy];
+//        orderModel.showapi_res_body.pagebean.allNum = [NSNumber numberWithInteger: orderModel.showapi_res_body.pagebean.contentlist.count];
+        NSLog(@"**********%@",orderModel.showapi_res_body.pagebean.contentlist);
+        agencyListOfScrollView.orderModel = orderModel;
+        [agencyListOfScrollView.tableView reloadData];
+        [SVProgressHUD dismiss];
     } channelName:@"国内焦点" maxResult:@"10"];
     listOfScrollView.tag = 0;
     agencyListOfScrollView = [[LIstOfScrollView alloc]init];
@@ -92,11 +100,11 @@
 }
 //通知事件AFNetWorkingRequestError
 - (void)AFNetWorkingRequestError{
-    TVOrderModel *orderModel = [[TVOrderModel alloc]init];
-    orderModel.showapi_res_body.pagebean.contentlist = [[[DataBase sharedDataBase]getAllPerson]copy];
-    orderModel.showapi_res_body.pagebean.allNum = [NSNumber numberWithInteger:[[DataBase sharedDataBase]getAllPerson].count];
-    agencyListOfScrollView.orderModel = orderModel;
-    [agencyListOfScrollView.tableView reloadData];
+//    TVOrderModel *orderModel = [[TVOrderModel alloc]init];
+//    orderModel.showapi_res_body.pagebean.contentlist = [[[DataBase sharedDataBase]getAllPerson]copy];
+//    orderModel.showapi_res_body.pagebean.allNum = [NSNumber numberWithInteger:orderModel.showapi_res_body.pagebean.contentlist.count];
+//    agencyListOfScrollView.orderModel = orderModel;
+//    [agencyListOfScrollView.tableView reloadData];
     NSLog(@"error!");
 //    if (_requestErrorLabel.tag != -1) {
 //        _requestErrorLabel = [[UILabel alloc]initWithFrame:CGRectMake(130, Height/2-30, 150, 30)];

@@ -13,6 +13,7 @@
 @interface DataBase : NSObject
 
 @property (strong, nonatomic) NSMutableArray<TVcontentlistModel,Optional> *contentlistAll;
+@property (strong,nonatomic) TVOrderModel *orderModel;
 + (instancetype)sharedDataBase;
 #pragma mark - News
 /*

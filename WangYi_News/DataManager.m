@@ -24,7 +24,7 @@
         NSNotification *notification =[NSNotification notificationWithName:@"AFNetWorkingRequestError" object:nil userInfo:nil];
         // 通过 通知中心 发送 通知
         [[NSNotificationCenter defaultCenter] postNotification:notification];
-        
+        failureBlock();
     }];
 
 }

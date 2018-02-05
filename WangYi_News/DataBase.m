@@ -49,12 +49,12 @@ static DataBase *_DBCtl = nil;
     
     // 实例化FMDataBase对象
     
-    _db = [FMDatabase databaseWithPath:@"/Users/jack/Public/iOS/tmp.db"];
-    NSLog(@"/////////////// %d",    [_db open]);
+    _db = [FMDatabase databaseWithPath:@"/Users/jack/Public/iOS/fmdb.db"];
+    [_db open];
 
     
     // 初始化数据表
-    NSString *news = @"create table 'news' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL ,'news_title' VARCHAR(255),'news_channelName' VARCHAR(255),'news_date' VARCHAR(255),'news_link',VARCHAR(255) ,'news_html' VARCHAR(255),'news_imageurls' VARCHAR(255))";
+    NSString *news = @"CREATE TABLE IF NOT EXISTS news(id INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL ,title VARCHAR(255),channelName VARCHAR(255),pubDate VARCHAR(255),link VARCHAR(255) ,imageurls VARCHAR(255))";
     
     NSLog(@"------------------ %d",[_db executeUpdate:news]);
     
@@ -66,13 +66,14 @@ static DataBase *_DBCtl = nil;
 - (void)addNews:(TVOrderModel *)orderModel{
     [_db open];
     int num = (int)orderModel.showapi_res_body.pagebean.contentlist.count;
+    NSLog(@"oooooo%d",num);
     if(num>10){
         num = 10;
     }
     TVcontentlistModel *contentlistModel = [[TVcontentlistModel alloc]init];
     for(int i=0;i<num;i++){
         contentlistModel = orderModel.showapi_res_body.pagebean.contentlist[i];
-        [_db executeUpdate:@"INSERT INTO news(news_title,news_channelName,news_pubDate,news_link,news_html,news_imageurls)VALUES(?,?,?,?)",contentlistModel.title,contentlistModel.channelName,contentlistModel.pubDate,contentlistModel.link,contentlistModel.html,contentlistModel.imageurls];
+        NSLog(@"+++++++++%d",[_db executeUpdate:@"INSERT INTO news(title,channelName,pubDate,link,imageurls)VALUES(?,?,?,?,?)",contentlistModel.title,contentlistModel.channelName,contentlistModel.pubDate,contentlistModel.link,contentlistModel.html,contentlistModel.imageurls]);
     }
     [_db close];
     
@@ -93,23 +94,19 @@ static DataBase *_DBCtl = nil;
     [_db open];
     
     
-    FMResultSet *res = [_db executeQuery:@"SELECT * FROM news"];
-    
+    FMResultSet *res = [_db executeQuery:@"select * from news"];
+    _contentlistAll = [NSMutableArray<TVcontentlistModel,Optional> array];
     while ([res next]) {
-        TVcontentlistModel *contentlistModel = [[TVcontentlistModel alloc] init];
-        contentlistModel.title = [res stringForColumn:@"news_title"];
-        contentlistModel.channelName = [res stringForColumn:@"news_channelName"];
-        contentlistModel.pubDate = [res stringForColumn:@"news_pubDate"];
-        contentlistModel.link = [res stringForColumn:@"news_link"];
-        contentlistModel.html = [res stringForColumn:@"news_html"];
-        contentlistModel.imageurls = [res objectForColumn:@"news_imageurls"];
-        [_contentlistAll addObject:contentlistModel];
         
+        TVcontentlistModel *contentlistModel = [[TVcontentlistModel alloc]init];
+        contentlistModel.channelName = [res stringForColumn:@"channelName"];
+        contentlistModel.pubDate = [res stringForColumn:@"pubDate"];
+        contentlistModel.title = [res stringForColumn:@"title"];
+        contentlistModel.link = [res stringForColumn:@"link"];
+        contentlistModel.imageurls = [res objectForColumn:@"imageurls"];
+        [_contentlistAll addObject:contentlistModel];
     }
-    
     [_db close];
-    
-    
     
     return _contentlistAll;
     
