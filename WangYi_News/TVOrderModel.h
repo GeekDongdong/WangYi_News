@@ -33,11 +33,11 @@
 @end
 
 @interface  TVbodyModel: JSONModel
-@property (strong, nonatomic)  TVpagebeanModel *pagebean;
+@property (strong, nonatomic)  TVpagebeanModel<Optional> *pagebean;
 @end
 
 @interface  TVOrderModel: JSONModel
-@property (strong, nonatomic)  TVbodyModel *showapi_res_body;
+@property (strong, nonatomic)  TVbodyModel<Optional> *showapi_res_body;
 @end
 
 

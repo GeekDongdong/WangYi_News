@@ -56,7 +56,13 @@
     _titleOfListArray = [[NSArray alloc]initWithObjects:@"国内焦点",@"电影",@"健康",@"娱乐",@"体育",@"情感两性最新",@"财经",@"科技",@"汽车",@"社会",@"军事",@"CBA最新",@"房产",@"理财最新",@"美容护肤最新", nil];
     dataManger = [[DataManager alloc]init];
     LIstOfScrollView *listOfScrollView = [[LIstOfScrollView alloc]initWithTitle:@"国内焦点"];
+    agencyListOfScrollView = [[LIstOfScrollView alloc]init];
+    agencyListOfScrollView = listOfScrollView;
+    listOfScrollView.tableView.delegate = self;
+    listOfScrollView.frame = CGRectMake(0, 0, Width, 550);
+    [self.scrollView addSubview:listOfScrollView];
     [dataManger getData:^(TVOrderModel *model) {
+
         agencyListOfScrollView.orderModel = model;
         agencyListOfScrollView.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         [SVProgressHUD dismiss];
@@ -64,22 +70,24 @@
         [[DataBase sharedDataBase]addNews:agencyListOfScrollView.orderModel];
         [agencyListOfScrollView.tableView reloadData];
     } faliure:^{
+        //初始化orderModel极其属性，否则其属性不能接受数据
         TVOrderModel *orderModel = [[TVOrderModel alloc]init];
-        //从数据库取数据
-        orderModel.showapi_res_body.pagebean.contentlist = [[[DataBase sharedDataBase]getAllPerson] mutableCopy];
-//        orderModel.showapi_res_body.pagebean.allNum = [NSNumber numberWithInteger: orderModel.showapi_res_body.pagebean.contentlist.count];
-        NSLog(@"**********%@",orderModel.showapi_res_body.pagebean.contentlist);
+        TVbodyModel *bodyModel = [[TVbodyModel alloc]init];
+        TVpagebeanModel *pagebeanModel = [[TVpagebeanModel alloc]init];
+        pagebeanModel.contentlist = [[[DataBase sharedDataBase]getAllPerson] mutableCopy];
+        pagebeanModel.allNum = @10;
+        bodyModel.pagebean = pagebeanModel;
+        orderModel.showapi_res_body = bodyModel;
         agencyListOfScrollView.orderModel = orderModel;
+        NSLog(@"-----%@",listOfScrollView.orderModel);
         [agencyListOfScrollView.tableView reloadData];
         [SVProgressHUD dismiss];
     } channelName:@"国内焦点" maxResult:@"10"];
     listOfScrollView.tag = 0;
-    agencyListOfScrollView = [[LIstOfScrollView alloc]init];
-    agencyListOfScrollView = listOfScrollView;
-    listOfScrollView.tableView.delegate = self;
-    listOfScrollView.frame = CGRectMake(0, 0, Width, 550);
-    [self.scrollView addSubview:listOfScrollView];
-    //添加加载页面前的网易图片
+//    agencyListOfScrollView = [[LIstOfScrollView alloc]init];
+    //请求成功是需要时间的，所以执行了后面初始化的代码，失败的很迅速的，因此在未执行后面初始化的代码前就reloadData，就crush了，因此这句需要写在block里
+    
+    //
     for (int i=0; i<15; i++) {
        [_tableViewOfScrollViewArray addObject:listOfScrollView];
     }
@@ -104,7 +112,7 @@
 //    orderModel.showapi_res_body.pagebean.contentlist = [[[DataBase sharedDataBase]getAllPerson]copy];
 //    orderModel.showapi_res_body.pagebean.allNum = [NSNumber numberWithInteger:orderModel.showapi_res_body.pagebean.contentlist.count];
 //    agencyListOfScrollView.orderModel = orderModel;
-//    [agencyListOfScrollView.tableView reloadData];
+    [agencyListOfScrollView.tableView reloadData];
     NSLog(@"error!");
 //    if (_requestErrorLabel.tag != -1) {
 //        _requestErrorLabel = [[UILabel alloc]initWithFrame:CGRectMake(130, Height/2-30, 150, 30)];
@@ -233,7 +241,7 @@
                     [SVProgressHUD dismiss];
                     [listOfScrollView.tableView reloadData];
                 } faliure:^{
-                    
+                    [SVProgressHUD dismiss];
                 } channelName:[_titleOfListArray objectAtIndex:number] maxResult:@"10"];
                 listOfScrollView.frame = CGRectMake(Width*number, 0, Width, 550);
                 [self.scrollView addSubview:listOfScrollView];
@@ -274,7 +282,7 @@
                 [SVProgressHUD dismiss];
                 [listOfScrollView.tableView reloadData];
             } faliure:^{
-                
+                [SVProgressHUD dismiss];
             } channelName:[_titleOfListArray objectAtIndex:number]  maxResult:@"10"];
             listOfScrollView.frame = CGRectMake(Width*keyOfScrollView, 0, Width, 550);
             [self.scrollView addSubview:listOfScrollView];
