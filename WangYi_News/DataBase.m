@@ -54,11 +54,11 @@ static DataBase *_DBCtl = nil;
 
     
     // 初始化数据表
-    NSString *news = @"CREATE TABLE IF NOT EXISTS news(id INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL ,title VARCHAR(255),channelName VARCHAR(255),pubDate VARCHAR(255),link VARCHAR(255) ,imageurls VARCHAR(255))";
+    NSString *news = @"CREATE TABLE IF NOT EXISTS news(id INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL ,title VARCHAR(255),channelName VARCHAR(255),pubDate VARCHAR(255),link VARCHAR(255) ,picUrls blob not null)";
     
     NSLog(@"------------------ %d",[_db executeUpdate:news]);
     
-    [_db close];
+    [_db close];    
     
 }
 #pragma mark - 接口
@@ -66,51 +66,74 @@ static DataBase *_DBCtl = nil;
 - (void)addNews:(TVOrderModel *)orderModel{
     [_db open];
     int num = (int)orderModel.showapi_res_body.pagebean.contentlist.count;
-    NSLog(@"oooooo%d",num);
     if(num>10){
         num = 10;
     }
     TVcontentlistModel *contentlistModel = [[TVcontentlistModel alloc]init];
     for(int i=0;i<num;i++){
         contentlistModel = orderModel.showapi_res_body.pagebean.contentlist[i];
-        NSLog(@"+++++++++%d",[_db executeUpdate:@"INSERT INTO news(title,channelName,pubDate,link,imageurls)VALUES(?,?,?,?,?)",contentlistModel.title,contentlistModel.channelName,contentlistModel.pubDate,contentlistModel.link,contentlistModel.html,contentlistModel.imageurls]);
+        NSData *dataImageUrls = [NSKeyedArchiver archivedDataWithRootObject:contentlistModel.imageurls];
+        NSLog(@"+++++++++%d",[_db executeUpdate:@"INSERT INTO news(title,channelName,pubDate,link,picUrls)VALUES(?,?,?,?,?)",contentlistModel.title,contentlistModel.channelName,contentlistModel.pubDate,contentlistModel.link,dataImageUrls]);
     }
+
+    
     [_db close];
     
 }
 - (void)updateNews:(TVOrderModel *)orderModel{
     [_db open];
     
-//    int num = (int)orderModel.showapi_res_body.pagebean.contentlist.count;
-//    TVcontentlistModel *tvModel = [[TVcontentlistModel alloc]init];
-//    for(int i=0;i<num;i++){
-//        tvModel = orderModel.showapi_res_body.pagebean.contentlist[i];
-//        [_db executeUpdate:@"UPDATE INTO person(news_title,news_channelName,news_pubDate,news_link,news_html,news_imageurls)VALUES(?,?,?,?)",tvModel.title,tvModel.channelName,tvModel.pubDate,tvModel.pubDate,tvModel.html,tvModel.imageurls];
-//    }
+    int num = (int)orderModel.showapi_res_body.pagebean.contentlist.count;
+    if(num>10){
+        num = 10;
+    }
+    TVcontentlistModel *contentlistModel = [[TVcontentlistModel alloc]init];
+    for(int i=0;i<num;i++){
+        contentlistModel = orderModel.showapi_res_body.pagebean.contentlist[i];
+        NSData *dataImageUrls = [NSKeyedArchiver archivedDataWithRootObject:contentlistModel.imageurls];
+        NSLog(@"------%d",[_db executeUpdate:@"UPDATE news set title = ?,channelName = ?,pubDate = ?,link = ?,picUrls = ?",contentlistModel.title,contentlistModel.channelName,contentlistModel.pubDate,contentlistModel.link,dataImageUrls]);
+    }
+    
     [_db close];
 
 }
 - (NSMutableArray *)getAllPerson{
     [_db open];
     
-    
     FMResultSet *res = [_db executeQuery:@"select * from news"];
-    _contentlistAll = [NSMutableArray<TVcontentlistModel,Optional> array];
+    _contentlistAll = [NSMutableArray array];
+
     while ([res next]) {
-        
+
         TVcontentlistModel *contentlistModel = [[TVcontentlistModel alloc]init];
         contentlistModel.channelName = [res stringForColumn:@"channelName"];
         contentlistModel.pubDate = [res stringForColumn:@"pubDate"];
         contentlistModel.title = [res stringForColumn:@"title"];
         contentlistModel.link = [res stringForColumn:@"link"];
-        contentlistModel.imageurls = [res objectForColumn:@"imageurls"];
+        NSArray <TVPicModel,Optional>* dataImageUrlsArray = [NSKeyedUnarchiver unarchiveObjectWithData:[res dataForColumn:@"picUrls"]];
+        contentlistModel.imageurls = dataImageUrlsArray;
+        
         [_contentlistAll addObject:contentlistModel];
     }
     [_db close];
-    
+    NSLog(@"%@",_contentlistAll);
     return _contentlistAll;
     
-    
+}
+//判断数据库里数据是否为空
+//YES==存在
+//NO==不存在
+-(BOOL)isNilOrNot{
+    [_db open];
+    FMResultSet *res = [_db executeQuery:@"select * from news"];
+    [res next];
+    if ([res resultDictionary]) {
+        [_db close];
+        return YES;
+    }else{
+        [_db close];
+        return NO;
+    }
 }
 
 @end

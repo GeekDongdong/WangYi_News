@@ -83,7 +83,6 @@
 +(float)setIntroductionText:(ShouYeTVCell *)cell{
     //获得当前cell高度
     CGRect frame = [cell frame];
-
     //设置label的最大行数
     cell.titleLabel.numberOfLines = 10;
     CGSize size = CGSizeMake((screenLength-30)/4*3, 1000);

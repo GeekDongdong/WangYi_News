@@ -18,7 +18,7 @@
     manger.requestSerializer= [AFHTTPRequestSerializer serializer];
     [manger GET:urlString parameters:paraDictionary progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         _orderModel = [[TVOrderModel alloc] initWithDictionary:responseObject error:nil];
-
+//        NSLog(@"%@",_orderModel);
         sucessBlock(_orderModel);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSNotification *notification =[NSNotification notificationWithName:@"AFNetWorkingRequestError" object:nil userInfo:nil];

@@ -615,20 +615,28 @@
 			path = "../../Downloads/SVProgressHUD-master/SVProgressHUD";
 			sourceTree = "<group>";
 		};
+		044479342031D8A1000F2141 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				046C92831FA5C64C00F61C73 /* Masonry */,
+				04014B1C1FAFEFE900EC3F32 /* JSONModel */,
+				041CF9A01FB702FB002DAC79 /* MJRefresh */,
+				0429CF561FBB1E4700D610EF /* SDWebImage */,
+				043199DD1FDABB9200D40C42 /* SVProgressHUD */,
+				04834F3E1FEBC28500BF9B98 /* fmdb */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
 		046C92441FA5B81600F61C73 = {
 			isa = PBXGroup;
 			children = (
-				04834F3E1FEBC28500BF9B98 /* fmdb */,
-				043199DD1FDABB9200D40C42 /* SVProgressHUD */,
-				0429CF561FBB1E4700D610EF /* SDWebImage */,
-				041CF9A01FB702FB002DAC79 /* MJRefresh */,
-				04014B1C1FAFEFE900EC3F32 /* JSONModel */,
+				044479342031D8A1000F2141 /* Other */,
 				046C924F1FA5B81600F61C73 /* WangYi_News */,
 				046C92691FA5B81600F61C73 /* WangYi_NewsTests */,
 				046C92741FA5B81600F61C73 /* WangYi_NewsUITests */,
 				046C924E1FA5B81600F61C73 /* Products */,
 				207EA609238F072E7D35FF42 /* Pods */,
-				046C92831FA5C64C00F61C73 /* Masonry */,
 				78514CFE01CFE26E948B2D8B /* Frameworks */,
 			);
 			sourceTree = "<group>";

@@ -53,10 +53,10 @@
     [self addListScrollView];
     
     //添加主页内容
-    _titleOfListArray = [[NSArray alloc]initWithObjects:@"国内焦点",@"电影",@"健康",@"娱乐",@"体育",@"情感两性最新",@"财经",@"科技",@"汽车",@"社会",@"军事",@"CBA最新",@"房产",@"理财最新",@"美容护肤最新", nil];
+    _titleOfListArray = [[NSArray alloc]initWithObjects:@"国内焦点",@"社会焦点",@"健康养生最新",@"娱乐焦点",@"体育焦点",@"情感两性最新",@"财经焦点",@"科技焦点",@"汽车焦点",@"社会焦点",@"军事焦点",@"CBA最新",@"房产焦点",@"理财最新",@"美容护肤最新", nil];
     dataManger = [[DataManager alloc]init];
     LIstOfScrollView *listOfScrollView = [[LIstOfScrollView alloc]initWithTitle:@"国内焦点"];
-    agencyListOfScrollView = [[LIstOfScrollView alloc]init];
+    agencyListOfScrollView = [[LIstOfScrollView alloc]initWithTitle:nil];
     agencyListOfScrollView = listOfScrollView;
     listOfScrollView.tableView.delegate = self;
     listOfScrollView.frame = CGRectMake(0, 0, Width, 550);
@@ -67,27 +67,30 @@
         agencyListOfScrollView.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         [SVProgressHUD dismiss];
         //数据库存储
-        [[DataBase sharedDataBase]addNews:agencyListOfScrollView.orderModel];
+        if ([[DataBase sharedDataBase]isNilOrNot] == YES) {
+            [[DataBase sharedDataBase]updateNews:agencyListOfScrollView.orderModel];
+            NSLog(@"updateNews");
+        }else if([[DataBase sharedDataBase]isNilOrNot] == NO) {
+            [[DataBase sharedDataBase]addNews:agencyListOfScrollView.orderModel];
+            NSLog(@"addNews");
+        }
+
         [agencyListOfScrollView.tableView reloadData];
+        
     } faliure:^{
         //初始化orderModel极其属性，否则其属性不能接受数据
         TVOrderModel *orderModel = [[TVOrderModel alloc]init];
         TVbodyModel *bodyModel = [[TVbodyModel alloc]init];
         TVpagebeanModel *pagebeanModel = [[TVpagebeanModel alloc]init];
-        pagebeanModel.contentlist = [[[DataBase sharedDataBase]getAllPerson] mutableCopy];
-        pagebeanModel.allNum = @10;
+        pagebeanModel.contentlist = [[DataBase sharedDataBase]getAllPerson];
         bodyModel.pagebean = pagebeanModel;
         orderModel.showapi_res_body = bodyModel;
         agencyListOfScrollView.orderModel = orderModel;
-        NSLog(@"-----%@",listOfScrollView.orderModel);
         [agencyListOfScrollView.tableView reloadData];
         [SVProgressHUD dismiss];
     } channelName:@"国内焦点" maxResult:@"10"];
     listOfScrollView.tag = 0;
-//    agencyListOfScrollView = [[LIstOfScrollView alloc]init];
-    //请求成功是需要时间的，所以执行了后面初始化的代码，失败的很迅速的，因此在未执行后面初始化的代码前就reloadData，就crush了，因此这句需要写在block里
-    
-    //
+    //解决滑动到相邻界面所需要的措施
     for (int i=0; i<15; i++) {
        [_tableViewOfScrollViewArray addObject:listOfScrollView];
     }
@@ -108,20 +111,23 @@
 }
 //通知事件AFNetWorkingRequestError
 - (void)AFNetWorkingRequestError{
-//    TVOrderModel *orderModel = [[TVOrderModel alloc]init];
-//    orderModel.showapi_res_body.pagebean.contentlist = [[[DataBase sharedDataBase]getAllPerson]copy];
-//    orderModel.showapi_res_body.pagebean.allNum = [NSNumber numberWithInteger:orderModel.showapi_res_body.pagebean.contentlist.count];
-//    agencyListOfScrollView.orderModel = orderModel;
+
     [agencyListOfScrollView.tableView reloadData];
     NSLog(@"error!");
-//    if (_requestErrorLabel.tag != -1) {
-//        _requestErrorLabel = [[UILabel alloc]initWithFrame:CGRectMake(130, Height/2-30, 150, 30)];
-//        _requestErrorLabel.text = @"暂时没网了...";
-//        _requestErrorLabel.tag = -1;
-//        _requestErrorLabel.font = [UIFont systemFontOfSize:20];
-//        [self.view addSubview:_requestErrorLabel];
-//    }
-
+        _requestErrorLabel = [[UILabel alloc]initWithFrame:CGRectMake((Width-80)/2, 94, 80, 10)];
+        _requestErrorLabel.text = @"暂时没网了...";
+        _requestErrorLabel.tag = -1;
+        _requestErrorLabel.font = [UIFont systemFontOfSize:11];
+        _requestErrorLabel.textColor = [UIColor redColor];
+        [self.view addSubview:_requestErrorLabel];
+    //删除“暂时没网了”
+    [NSTimer scheduledTimerWithTimeInterval:1 repeats:NO block:^(NSTimer * _Nonnull timer) {
+        for (UIView *subviews in [self.view subviews]) {
+            if (subviews.tag==-1) {
+                [subviews removeFromSuperview];
+            }
+        }
+    }];
 }
 //通知事件applyTheme
 - (void)applyTheme:(NSNotification *)noti {
@@ -221,7 +227,7 @@
         tableViewOfplaceholderImageView.frame = CGRectMake(Width/2+Width*i-30, (Height-94)/2-60, 60, 30);
         [self.scrollView addSubview:tableViewOfplaceholderImageView];
     }
-   }
+}
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     int number=(int)scrollView.contentOffset.x/Width;
@@ -236,6 +242,7 @@
                 listOfScrollView.tableView.tag = number;
                 listOfScrollView.tableView.delegate = self;
                 [dataManger getData:^(TVOrderModel *model) {
+                    
                     listOfScrollView.orderModel = model;
                     listOfScrollView.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
                     [SVProgressHUD dismiss];
@@ -277,6 +284,7 @@
             listOfScrollView.tableView.tag = number;
             listOfScrollView.tableView.delegate = self;
             [dataManger getData:^(TVOrderModel *model) {
+
                 listOfScrollView.orderModel = model;
                 listOfScrollView.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
                 [SVProgressHUD dismiss];
@@ -302,14 +310,20 @@
         maxResult = 10;
     }
 }
+//   回到tableView初始界面的点击事件
 - (void)backToMain{
     [agencyListOfScrollView.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     [self setTabBarHidden:NO];
 }
+/*
+ *    tableViewCell的高度设置
+ *
+ */
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    NSLog(@"先执行heightForRowAtIndexPath:");
     TVcontentlistModel *tvModel = [[TVcontentlistModel alloc]init];
     tvModel = agencyListOfScrollView.orderModel.showapi_res_body.pagebean.contentlist[indexPath.row];
-    //    NSLog(@"--%@",tvModel);
+    
     if (tvModel.imageurls.count<3 && tvModel.imageurls.count!=0) {
         return [ShouYeTVCell setIntroductionText:agencyListOfScrollView.cellOne];
     }else if (tvModel.imageurls.count==0){
@@ -319,6 +333,10 @@
         return [ShouYeTVCellTwo setIntroductionText:agencyListOfScrollView.cellTwo];
     }
 }
+/*
+ *    tableViewCell的点击事件
+ *
+ */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TVcontentlistModel *tvModel = [[TVcontentlistModel alloc]init];

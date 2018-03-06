@@ -12,7 +12,7 @@
 
 @interface DataBase : NSObject
 
-@property (strong, nonatomic) NSMutableArray<TVcontentlistModel,Optional> *contentlistAll;
+@property (strong, nonatomic) NSMutableArray *contentlistAll;
 @property (strong,nonatomic) TVOrderModel *orderModel;
 + (instancetype)sharedDataBase;
 #pragma mark - News
@@ -30,6 +30,11 @@
  *获取全部
  *
  */
-- (NSMutableArray *)getAllPerson;
+- (NSMutableArray<TVcontentlistModel> *)getAllPerson;
+/*
+ *判断为空
+ *
+ */
+-(BOOL)isNilOrNot;
 
 @end

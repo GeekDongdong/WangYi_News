@@ -28,7 +28,6 @@
         [_tableView registerClass:[ShouYeTVCell class] forCellReuseIdentifier:@"cellId1"];
         [_tableView registerClass:[ShouYeTVCellTwo class] forCellReuseIdentifier:@"cellId2"];
         [_tableView registerClass:[ShouYeTVCellOnlyText class] forCellReuseIdentifier:@"cellId3"];
-//        [self getData:title];
         listTitle = title;
         //MBProgressHUD
         [SVProgressHUD setBackgroundColor:[UIColor clearColor]];
@@ -48,7 +47,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TVcontentlistModel *tvModel = [[TVcontentlistModel alloc]init];
     tvModel = _orderModel.showapi_res_body.pagebean.contentlist[indexPath.row];
-
+//    NSLog(@"cellForRowAtIndexPath:");
     
     if (tvModel.imageurls.count<3 && tvModel.imageurls.count!=0) {
         _cellOne = [tableView dequeueReusableCellWithIdentifier:@"cellId1" forIndexPath:indexPath];
